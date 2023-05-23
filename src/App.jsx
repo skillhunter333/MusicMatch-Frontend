@@ -7,6 +7,7 @@ import {
   ProtectedRoute,
   Register,
   Dashboard,
+  SetupProfile,
 } from './pages';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='auth' element={<ProtectedRoute />}>
+            <Route path='profilesetup' element={<SetupProfile />} />
             <Route path='dashboard' element={<Dashboard />} />
           </Route>
           <Route path='login' element={<Login />} />

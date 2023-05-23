@@ -5,6 +5,7 @@ import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
 import Register from './Register';
 import Dashboard from './Dashboard';
+import SetupProfile from './SetupProfile';
 
 export {
   Home,
@@ -14,4 +15,5 @@ export {
   ProtectedRoute,
   Register,
   Dashboard,
+  SetupProfile,
 };

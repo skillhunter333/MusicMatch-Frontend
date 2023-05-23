@@ -10,9 +10,8 @@ const inputStyles =
 const Register = () => {
   const { isAuth, setGotCookie } = useAuthContext();
   const navigate = useNavigate();
-  const [{ firstName, lastName, email, password }, setForm] = useState({
-    firstName: '',
-    lastName: '',
+  const [{ email, password }, setForm] = useState({
+
     email: '',
     password: '',
   });
@@ -26,8 +25,8 @@ const Register = () => {
     e.preventDefault();
     try {
       const { status } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users/register`,
-        { firstName, lastName, email, password },
+        `${import.meta.env.VITE_API_URL}/register`,
+        { email, password },
         { withCredentials: true }
       );
       if (status === 201) setGotCookie(true);
@@ -48,22 +47,6 @@ const Register = () => {
             Register
           </h1>
           <div className='flex flex-col items-center justify-around h-2/3 w-full'>
-            <input
-              type='text'
-              placeholder='First Name'
-              name='firstName'
-              value={firstName}
-              onChange={handleChange}
-              className={inputStyles}
-            />
-            <input
-              type='text'
-              placeholder='Last Name'
-              name='lastName'
-              value={lastName}
-              onChange={handleChange}
-              className={inputStyles}
-            />
             <input
               type='text'
               placeholder='E-mail'

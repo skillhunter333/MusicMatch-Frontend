@@ -1,4 +1,3 @@
-import React from 'react'
 
 const SetupProfile = () => {
   return (
@@ -9,4 +8,4 @@ const SetupProfile = () => {
   );
 };
 
-export default SetupProfile
+export default SetupProfile;

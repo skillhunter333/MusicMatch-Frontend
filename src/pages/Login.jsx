@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { status } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/login`,
+        `${import.meta.env.VITE_API_URL}users/login`,
         { email, password },
         { withCredentials: true }
       );

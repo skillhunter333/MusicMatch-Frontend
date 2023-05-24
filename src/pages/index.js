@@ -6,6 +6,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Register from './Register';
 import Dashboard from './Dashboard';
 import SetupProfile from './SetupProfile';
+import ProfilePage from './ProfilePage';
 
 export {
   Home,
@@ -16,4 +17,5 @@ export {
   Register,
   Dashboard,
   SetupProfile,
+  ProfilePage,
 };

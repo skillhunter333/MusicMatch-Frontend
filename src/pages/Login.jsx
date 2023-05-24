@@ -17,10 +17,10 @@ const Login = () => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("its working to log from here")
       console.log(`${import.meta.env.VITE_API_URL}/users/login`)
       const { status } = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/login`,

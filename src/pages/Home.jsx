@@ -7,6 +7,7 @@ const Home = () => {
         <h1 className='text-3xl font-semibold mb-8'>MusicMatch Home</h1>
         <h3 className='text-lg font-thin mb-12'>
           Connecting People through the Love for Music. Learn, Teach, Socialize.
+          Changes applied 
         </h3>
       </div>
     </main>

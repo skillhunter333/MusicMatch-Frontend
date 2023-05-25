@@ -20,8 +20,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("its working to log from here")
-      console.log(`${import.meta.env.VITE_API_URL}/users/login`)
       const { status } = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/login`,
         { email, password },
@@ -33,7 +31,7 @@ const Login = () => {
     }
   };
 
-  if (isAuth) return <Navigate to='/auth/profilesetup' />;
+  if (isAuth) return <Navigate to='/auth/profile' />;
   else
     return (
       <div className='mt-[-1px] w-full h-screen flex items-center justify-center'>

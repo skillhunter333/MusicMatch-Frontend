@@ -7,7 +7,7 @@ import { useAuthContext } from '../context/AuthContext';
 
 const ulStyles = {
   dropdown:
-    'fixed top-16 right-5 text-black dark:text-white bg-slate-200 dark:bg-slate-800 rounded text-base',
+    'fixed top-16 right-5 text-white dark:text-white bg-slate-200 dark:bg-slate-800 rounded text-base',
   expanded: 'sm:flex justify-end items-center hidden sm:block mr-4',
 };
 
@@ -48,9 +48,18 @@ const MenuList = ({ dropdown = false }) => {
         </>
       ) : (
         <>
-
+          <li className='text-zinc-100 mx-4 my-2'>
+            <Link to='/auth/dashboard'>Dashboard</Link>
+          </li>
           <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer' onClick={logout}>
             Logout
+          </li>
+          <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer'>
+          <img
+            className="rounded-full w-12 h-12 mb-4 mt-4"
+            src="https://res.cloudinary.com/lessondovienna/image/upload/f_auto,q_auto,b_auto:predominant,c_pad,g_center,e_gradient_fade:symmetric_pad,x_30,w_2560,h_1422/uploads/asgjn8piq1cjngjx70uv"
+            alt="Profile Picture"
+          />
           </li>
         </>
       )}

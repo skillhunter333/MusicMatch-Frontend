@@ -58,8 +58,8 @@ const MenuList = ({ dropdown = false }) => {
           <img
             className="rounded-full w-12 h-12 mb-4 mt-4"
             src="https://res.cloudinary.com/lessondovienna/image/upload/f_auto,q_auto,b_auto:predominant,c_pad,g_center,e_gradient_fade:symmetric_pad,x_30,w_2560,h_1422/uploads/asgjn8piq1cjngjx70uv"
-            alt="Profile Picture"
-          />
+            alt="Profile Avatar"
+            />
           </li>
         </>
       )}

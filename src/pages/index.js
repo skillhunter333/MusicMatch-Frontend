@@ -7,6 +7,7 @@ import Register from './Register';
 import Dashboard from './Dashboard';
 import SetupProfile from './SetupProfile';
 import ProfilePage from './ProfilePage';
+import Chat from './Chat';
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   Dashboard,
   SetupProfile,
   ProfilePage,
+  Chat,
 };

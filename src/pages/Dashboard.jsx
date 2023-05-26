@@ -1,26 +1,30 @@
+import { useNavigate } from 'react-router-dom';
+import { HiChatAlt2, HiMap, HiOutlineStar, HiSparkles } from 'react-icons/hi';
+
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   return (
     <main className='w-full flex flex-col items-center mt-[-1px] dark:bg-slate-700 h-fit'>
       <div className='w-fit mt-28 p-4 flex flex-col items-center'>
         <h1 className='text-3xl font-semibold mb-8'>Dashboard</h1>
         <h3 className='text-lg font-thin mb-12'>
-        People nearby (maps) | Matching | Chats | Favourites (bookmarked people)
+        Chats | People nearby (maps) | Matching | Favourites (bookmarked people)
         </h3>
         <div className="flex flex-col items-center justify-center">
-      <h3 className="text-3xl font-bold mb-4">Headline</h3>
-      <div className="grid grid-cols-4 gap-4">
-        <button className="flex items-center justify-center h-32 w-64 bg-blue-500 text-white text-xl font-bold rounded-lg shadow-lg">
-          Button 1
+
+      <div className="flex space-x-4">
+        <button onClick={() => navigate('/auth/chat')} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+          <HiChatAlt2 />
         </button>
-        <button className="flex items-center justify-center h-32 w-64 bg-green-500 text-white text-xl font-bold rounded-lg shadow-lg">
-          Button 2
+        <button className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+          <HiMap />
         </button>
-        <button className="flex items-center justify-center h-32 w-64 bg-red-500 text-white text-xl font-bold rounded-lg shadow-lg">
-          Button 3
+        <button className=" w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+          <HiOutlineStar />
         </button>
-        <button className="flex items-center justify-center h-32 w-64 bg-yellow-500 text-white text-xl font-bold rounded-lg shadow-lg">
-          Button 4
+        <button className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+          <HiSparkles />
         </button>
       </div>
     </div>

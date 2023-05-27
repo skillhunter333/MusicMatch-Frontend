@@ -17,6 +17,7 @@ const Login = () => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,6 +26,7 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
+      console.log('login request status: ' + status)
       if (status === 200) setGotCookie(true);
     } catch (error) {
       toastError(error.message || 'No cookie back');

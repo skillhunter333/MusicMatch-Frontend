@@ -15,7 +15,7 @@ const ulStyles = {
 const MenuList = ({ dropdown = false }) => {
   const { isAuth, setIsAuth, setUser, setGotCookie } = useAuthContext();
 
-  const logout = async () => {
+  const handleLogout = async () => {
     try {
       const { status } = await axios(
         `${import.meta.env.VITE_API_URL}/users/logout`,
@@ -51,7 +51,7 @@ const MenuList = ({ dropdown = false }) => {
           <li className='text-zinc-100 mx-4 my-2'>
             <Link to='/auth/dashboard'>Dashboard</Link>
           </li>
-          <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer' onClick={logout}>
+          <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer' onClick={handleLogout}>
             Logout
           </li>
           <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer'>

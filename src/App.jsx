@@ -9,7 +9,8 @@ import {
   Dashboard,
   SetupProfile,
   ProfilePage,
-  Chat
+  Chat,
+  Map
 } from './pages';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='profile' element={<ProfilePage />} />
             <Route path='chat' element={<Chat />} />
+            <Route path='map' element={<Map />} />
           </Route>
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />

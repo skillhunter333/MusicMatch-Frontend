@@ -17,7 +17,7 @@ const Dashboard = () => {
         <button onClick={() => navigate('/auth/chat')} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
           <HiChatAlt2 />
         </button>
-        <button className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+        <button onClick={() => navigate('/auth/map')} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
           <HiMap />
         </button>
         <button className=" w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">

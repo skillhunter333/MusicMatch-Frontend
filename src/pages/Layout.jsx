@@ -6,9 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 const Layout = () => {
   return (
     <>
-      <ToastContainer />
+      
+      <ToastContainer className='mt-12'/>
       <NavBar />
-      <Outlet />
+      <div className='mt-12'>
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

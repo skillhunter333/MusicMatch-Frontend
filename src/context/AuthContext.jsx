@@ -9,25 +9,34 @@ export const useAuthContext = () => useContext(AuthContextObj);
 export const AuthContext = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
+  
   const [gotCookie, setGotCookie] = useState(false);
 
   useEffect(() => {
-    const checkToken = async () => {
-      try {
-        const { data } = await axios(
-          `${import.meta.env.VITE_API_URL}/users/me`,
-          {
-            withCredentials: true,
-          }
-        );
-        setUser(data);
-        setIsAuth(true);
-      } catch (error) {
-        if (error.response.status !== 400) toastError(error.message);
-      }
-    };
     checkToken();
+   
   }, [gotCookie]);
+  
+
+  async function checkToken(){
+    try {
+      //get authUser data
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_URL}/users/me`,
+        {
+          withCredentials: true,
+        }
+      );
+      setUser(data);
+
+      setIsAuth(true);
+    } catch (error) {
+      if (error.response.status !== 400) toastError(error.message);
+    }
+  };
+
+  
+
 
   return (
     <AuthContextObj.Provider

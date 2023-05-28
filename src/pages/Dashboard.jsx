@@ -1,9 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { HiChatAlt2, HiMap, HiOutlineStar, HiSparkles } from 'react-icons/hi';
+import { HiUserCircle } from "react-icons/hi2";
+import { useAuthContext } from "../context/AuthContext";
 
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const { user } = useAuthContext();
+
   return (
     <main className='w-full flex flex-col items-center mt-[-1px] dark:bg-slate-700 h-fit'>
       <div className='w-fit mt-28 p-4 flex flex-col items-center'>
@@ -25,6 +30,9 @@ const Dashboard = () => {
         </button>
         <button className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
           <HiSparkles />
+        </button>
+        <button onClick={() => navigate(`/auth/profile/${user._id}`)} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+          <HiUserCircle />
         </button>
       </div>
     </div>

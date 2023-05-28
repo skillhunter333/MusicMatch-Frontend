@@ -5,7 +5,7 @@ import { toastError } from '../lib/toastify';
 import { useAuthContext } from '../context/AuthContext';
 
 const Login = () => {
-  const { isAuth, setGotCookie } = useAuthContext();
+  const { isAuth, setGotCookie, user } = useAuthContext();
 
   const navigate = useNavigate();
   const [{ email, password }, setForm] = useState({
@@ -33,7 +33,7 @@ const Login = () => {
     }
   };
 
-  if (isAuth) return <Navigate to='/auth/profile' />;
+  if (isAuth) return <Navigate to={`/auth/profile/${user._id}`} />;
   else
     return (
       <div className='mt-[-1px] w-full h-screen flex items-center justify-center'>

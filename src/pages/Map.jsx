@@ -32,21 +32,29 @@ const Map = () => {
         user.lonOff = getRndInt(-5,5)
     },[])
 
-
+     
     const getUsersAround = async () => {
-        const { data } = await axios(
+        try {
+          //get all Users data
+          const { data } = await axios(
             `${import.meta.env.VITE_API_URL}/users/all`,
             {
               withCredentials: true,
             }
           );
-          //filter authUser
+          //set offset to users postition
           data.forEach(u => {
-            u.latOff = getRndInt(-5,5);
-            u.lonOff = getRndInt(-5,5)
+              u.latOff = getRndInt(-5,5);
+              u.lonOff = getRndInt(-5,5)
           })
+          //filter authUser
           const filteredData = data.filter(u => u._id != user._id)
           setUsersAround(filteredData)
+    
+        } catch (error) {
+          if (error.response.status !== 400) toastError(error.message);
+        }
+        
     }
 
 
@@ -66,7 +74,7 @@ const Map = () => {
             {
                lat: e.target._lngLat.lat,
                lon: e.target._lngLat.lng,
-               //_id: targetId,
+               _id: targetId,
                firstName: usersAround.find(u => u._id == targetId).firstName
             }
         )
@@ -76,10 +84,10 @@ const Map = () => {
         event.stopPropagation();
         setShowPopup(true)
         setPopUp(
-            {
+            {   
                lat: e.target._lngLat.lat,
                lon: e.target._lngLat.lng,
-               //_id: user._id,
+               _id: user._id,
                firstName: 'Du'
             }
         )
@@ -112,7 +120,7 @@ const Map = () => {
                     anchor="bottom"
                     onClose={() => setShowPopup(false)}>
                     <p className="font-bold" >{popUp.firstName ? popUp.firstName : 'Musiker'  }</p>
-                    <Link to={"/profile"}>
+                    <Link to={`/auth/profile/${popUp._id}`}>
                         Profilseite
                     </Link>
                 </Popup>)}

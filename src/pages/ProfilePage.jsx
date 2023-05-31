@@ -1,34 +1,30 @@
 import { useAuthContext } from "../context/AuthContext";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios'
+import getUserById from '../utils.js/getUserById'
 
 //Keine Self-Ratings in Datenbank? + evtl. Minitext zu Skills/Interests
 
 const ProfilePage = () => {
   const { id } = useParams();
+  //user is based on params id
   const [user, setUser] = useState(null)
 
   useEffect(()=>{
-    getUserById()
+    async function getUser(){
+      try {
+        const user = await getUserById(id)
+        setUser(user)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getUser()
   },[])
 
 
-  async function getUserById(){
-    try {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/users/getuser/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      setUser(data);
-    } catch (error) {
-      //if (error.response.status !== 400) toastError(error.message);
-      console.log(error)
-    }
-  };
-  
+
   return (
     <div className="flex flex-col md:flex-row mt-20">
       {/* Profile Picture and Personal Statement */}

@@ -19,7 +19,7 @@ const { user } = useAuthContext();
       </div>
 
 
-              <div className="flex flex-wrap space-y-4 space-x-4 ">
+              <div className="flex flex-wrap gap-y-4 gap-x-4 justify-center">
                     <div>
                       <button onClick={() => navigate('/auth/chat')} className="w-64 flex items-center justify-center  h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
                         <HiChatAlt2 />
@@ -31,7 +31,7 @@ const { user } = useAuthContext();
                       </button>
                     </div>
                     <div>
-                      <button className=" w-64 flex items-center justify-center  h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+                      <button onClick={() => navigate('/auth/matching')} className=" w-64 flex items-center justify-center  h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
                         <HiOutlineStar />
                       </button>
                     </div>

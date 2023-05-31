@@ -33,7 +33,7 @@ const Login = () => {
     }
   };
 
-  if (isAuth) return <Navigate to={`/auth/profile/${user._id}`} />;
+  if (isAuth) return <Navigate to={`/auth/dashboard`} />;
   else
     return (
       <div className='mt-[-1px] w-full h-screen flex items-center justify-center'>

@@ -9,6 +9,7 @@ import SetupProfile from './SetupProfile';
 import ProfilePage from './ProfilePage';
 import Chat from './Chat';
 import Map from './Map';
+import Matching from './Matching'
 
 export {
   Home,
@@ -21,5 +22,6 @@ export {
   SetupProfile,
   ProfilePage,
   Chat,
-  Map
+  Map,
+  Matching
 };

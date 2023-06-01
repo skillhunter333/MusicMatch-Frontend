@@ -110,7 +110,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         `${import.meta.env.VITE_API_URL}/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
-          userId: user1._id,
+          userId: user1._id
         }, { withCredentials: true }
       );
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toastError, toastSuccess } from '../lib/toastify';
 import { useAuthContext } from '../context/AuthContext';
 
+
 const ulStyles = {
   dropdown:
     'fixed top-16 right-5 text-white dark:text-white bg-slate-200 dark:bg-slate-800 rounded text-base',
@@ -13,7 +14,7 @@ const ulStyles = {
 
 // eslint-disable-next-line react/prop-types
 const MenuList = ({ dropdown = false }) => {
-  const { isAuth, setIsAuth, setUser, setGotCookie } = useAuthContext();
+  const { isAuth, setIsAuth, setUser, user, setGotCookie } = useAuthContext();
 
   const handleLogout = async () => {
     try {
@@ -57,7 +58,7 @@ const MenuList = ({ dropdown = false }) => {
           <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer'>
           <img
             className="rounded-full w-12 h-12 mb-4 mt-4"
-            src="https://res.cloudinary.com/lessondovienna/image/upload/f_auto,q_auto,b_auto:predominant,c_pad,g_center,e_gradient_fade:symmetric_pad,x_30,w_2560,h_1422/uploads/asgjn8piq1cjngjx70uv"
+            src={user.imgUrl}
             alt="Profile Avatar"
             />
           </li>

@@ -32,7 +32,6 @@ const ProfilePage = () => {
     const skill = event.target.parentElement.parentElement.firstChild.firstChild.textContent
 
     console.log('delete skill: ' + skill)
-    
       
       try {
         
@@ -44,10 +43,40 @@ const ProfilePage = () => {
             withCredentials: true,            
           }
         );
+
+        //update after deleting
+        const user = await getUserById(id)
+        setUser(user)
+              
+      } catch (error) {
+        if (error.response.status !== 400) toastError(error.message);
+        console.log(error)
+      }
+  }
+
+  
+  async function handleDeleteInterest(event){
+    console.log('handleDeleteInterest')
+
+    const interest = event.target.parentElement.parentElement.firstChild.firstChild.textContent
+
+    console.log('delete interest: ' + interest)
       
-        console.log(data)
-          
+      try {
         
+        const { data } = await axios.put(
+          `${import.meta.env.VITE_API_URL}/users/me/interests/delete`,{
+            interest: interest
+          },
+          {
+            withCredentials: true,            
+          }
+        );
+        
+        //update after deleting
+        const user = await getUserById(id)
+        setUser(user)
+              
       } catch (error) {
         if (error.response.status !== 400) toastError(error.message);
         console.log(error)
@@ -67,13 +96,13 @@ const ProfilePage = () => {
        
           <img
             className="rounded-full w-64 h-64 mb-4"
-            src={user.imgUrl}
+            src={user && user.imgUrl}
             alt="Profile Picture"
           />
        
 
         {/*COL column with name and description*/}
-        <div className="flex flex-col  gap-4 bg-slate-400">
+        <div className="flex flex-col w-11/12 gap-4 bg-slate-400">
           {/*ROW with first and lastname*/}
           {user && 
             <div className="flex h-8 bg-slate-500">
@@ -81,7 +110,7 @@ const ProfilePage = () => {
               <p className="text-center">{user.lastName?user.lastName:'Nachname'}</p>
             </div>
             }
-          <div className="h-max bg-slate-300">
+          <div className="w-11/12 bg-slate-300">
             <p>{user && user.userDescription}</p>
           </div>
         </div>
@@ -101,7 +130,7 @@ const ProfilePage = () => {
               </div>
               <div>
                 <button className="bg-orange-400 w-12"> EDIT </button>
-                <button className="bg-red-500 w-8"> X </button>
+                <button onClick={handleDeleteInterest} className="bg-red-500 w-8"> X </button>
               </div>
             </div>
           ))}

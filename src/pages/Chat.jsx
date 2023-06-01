@@ -1,12 +1,17 @@
-//import Chatbox from "../components/chatcomponents/Chatbox";
-//import MyChats from "../components/chatcomponents/MyChats";
-//import SideDrawer from "../components/chatcomponents/SideDrawer";
+import Chatbox from "../components/chatcomponents/Chatbox";
+import MyChats from "../components/chatcomponents/MyChats";
+import SideDrawer from "../components/chatcomponents/SideDrawer";
 import { useAuthContext } from '../context/AuthContext';
+import { useState } from 'react'
 
-  /*const [fetchAgain, setFetchAgain] = useState(false);
+
+
+const Chat = () => {
+  const [fetchAgain, setFetchAgain] = useState(false);
   const { user } = useAuthContext();
 
-
+  return (
+    <>
        <div style={{ width: "100%" }}>
       {user && <SideDrawer />}
       <div className="flex justify-between w-full h-[91.5vh] p-10">
@@ -15,10 +20,17 @@ import { useAuthContext } from '../context/AuthContext';
           <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
         )}
       </div>
-    </div> */
+    </div> 
+    </>
+  );
+  };
+
+  export default Chat;
 
 
 
+
+/*
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -63,3 +75,4 @@ const Chat = () => {
 };
 
 export default Chat;
+*/

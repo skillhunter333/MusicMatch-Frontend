@@ -13,7 +13,7 @@ const ProfilePage = () => {
         <div className="flex flex-col items-center">
           <img
             className="rounded-full w-64 h-64 mb-4"
-            src="https://res.cloudinary.com/lessondovienna/image/upload/f_auto,q_auto,b_auto:predominant,c_pad,g_center,e_gradient_fade:symmetric_pad,x_30,w_2560,h_1422/uploads/asgjn8piq1cjngjx70uv"
+            src={user.imgUrl}
             alt="Profile Picture"
           />
           <p className="text-center">{user.firstName}</p>

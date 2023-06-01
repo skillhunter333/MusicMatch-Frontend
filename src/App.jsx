@@ -23,7 +23,7 @@ const App = () => {
             <Route path='profilesetup' element={<SetupProfile />} />
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='profile' element={<ProfilePage />} />
-            <Route path='chat' element={<Chat />} />
+              <Route path='chat' element={<Chat />} />
             <Route path='map' element={<Map />} />
           </Route>
           <Route path='login' element={<Login />} />

@@ -1,5 +1,5 @@
 import SingleChat from "./SingleChat";
-import { ChatState } from "../Context/ChatProvider";
+import { ChatState } from "../../context/ChatProvider";
 
 const Chatbox = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat } = ChatState();

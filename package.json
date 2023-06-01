@@ -11,6 +11,8 @@
     "build:styles": "postcss src/index.css -o public/build/index.css"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "axios": "^1.4.0",

@@ -74,7 +74,7 @@ const SideDrawer = () => {
             <div className="relative">
 </div>
 
-            <i className="fas fa-bell text-2xl m-1" />
+          
           </div>
         </div>
       </div>

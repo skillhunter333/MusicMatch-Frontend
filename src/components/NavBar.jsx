@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toastError, toastSuccess } from '../lib/toastify';
 import { useAuthContext } from '../context/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+
+
 
 
 const ulStyles = {
@@ -35,6 +39,10 @@ const MenuList = ({ dropdown = false }) => {
 
   return (
     <ul className={dropdown ? ulStyles.dropdown : ulStyles.expanded}>
+      <li className='text-zinc-100 mx-4 my-2'>
+        <FontAwesomeIcon icon={faBell} className="text-2xl m-1" />
+      </li>
+
       <li className='text-zinc-100 mx-4 my-2'>
         <Link to='/'>Home</Link>
       </li>

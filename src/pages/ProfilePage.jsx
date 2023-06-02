@@ -27,12 +27,15 @@ const ProfilePage = () => {
 
   
   async function handleDeleteSkill(event){
-    console.log('handleDeleteSkill')
 
     const skill = event.target.parentElement.parentElement.firstChild.firstChild.textContent
 
+    
+
+
     console.log('delete skill: ' + skill)
       
+
       try {
         
         const { data } = await axios.put(
@@ -43,6 +46,7 @@ const ProfilePage = () => {
             withCredentials: true,            
           }
         );
+
 
         //update after deleting
         const user = await getUserById(id)
@@ -76,6 +80,7 @@ const ProfilePage = () => {
         //update after deleting
         const user = await getUserById(id)
         setUser(user)
+
               
       } catch (error) {
         if (error.response.status !== 400) toastError(error.message);

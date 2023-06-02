@@ -10,6 +10,7 @@ import ProfilePage from './ProfilePage';
 import Chat from './Chat';
 import Map from './Map';
 import Matching from './Matching'
+import Skills from './Skills'
 
 export {
   Home,
@@ -23,5 +24,6 @@ export {
   ProfilePage,
   Chat,
   Map,
-  Matching
+  Matching,
+  Skills
 };

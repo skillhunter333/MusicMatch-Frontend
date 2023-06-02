@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { HiChatAlt2, HiMap, HiOutlineStar, HiSparkles } from 'react-icons/hi';
 import { HiUserCircle } from "react-icons/hi2";
 import { useAuthContext } from "../context/AuthContext";
+import { SlRocket } from "react-icons/sl"
 
 
 const Dashboard = () => {
@@ -43,6 +44,11 @@ const { user } = useAuthContext();
                     <div>
                       <button onClick={() => navigate(`/auth/profile/${user._id}`)} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
                         <HiUserCircle />
+                      </button>
+                    </div>
+                    <div>
+                      <button onClick={() => navigate(`/auth/skills`)} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
+                        <SlRocket />
                       </button>
                     </div>  
               </div>

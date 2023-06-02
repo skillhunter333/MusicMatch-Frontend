@@ -11,7 +11,8 @@ import {
   ProfilePage,
   Chat,
   Map,
-  Matching
+  Matching,
+  Skills
 } from './pages';
 
 const App = () => {
@@ -27,6 +28,8 @@ const App = () => {
             <Route path='chat' element={<Chat />} />
             <Route path='map' element={<Map />} />
             <Route path='matching' element={<Matching />} />
+            <Route path='skills' element={<Skills />} />
+
           </Route>
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />

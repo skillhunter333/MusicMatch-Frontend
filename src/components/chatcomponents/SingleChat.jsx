@@ -10,6 +10,9 @@ import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import { ChatState } from "../../context/ChatProvider";
 import { useAuthContext } from "../../context/AuthContext";
 import { toastError } from "../../lib/toastify";
+import typing from './typing.json';
+import { motion } from 'framer-motion';
+
 const ENDPOINT = import.meta.env.VITE_API_URL; 
 let socket, selectedChatCompare;
 
@@ -166,9 +169,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
           <div className="mt-3">
             {istyping ? (
-              <div>
-                  Animation for typing
-              </div>
+            <div>
+            <motion.div
+            animate={typing}
+            />
+            </div>
             ) : (
               <></>
             )}

@@ -32,17 +32,17 @@ const ScrollableChat = ({ messages }) => {
                 </div>
               </div>
             )}
-            <span
+            <div
               className={`${
-                m.sender._id === user._id ? "bg-blue-200" : "bg-green-200"
+                m.sender._id === user._id ? "bg-blue-200 justify-start" : "bg-green-200 justify-end"
               } ${
                 isSameSenderMargin(messages, m, i, user._id) ? "ml-2" : "ml-10"
               } ${
                 isSameUser(messages, m, i, user._id) ? "mt-2" : "mt-10"
               } rounded-lg py-1 px-3 max-w-75%`}
             >
-              {m.content}
-            </span>
+            {m.content}
+            </div>
           </div>
         ))}
     </ScrollableFeed>

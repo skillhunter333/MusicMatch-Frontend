@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import getUserById from '../utils.js/getUserById'
 import axios from 'axios'
-import { Button } from 'flowbite';
+
+import { Button } from 'flowbite-react';
 
 
 const Skills = () => {
@@ -125,7 +126,7 @@ const Skills = () => {
 
     return (
     <>
-    {/* <Button.Group>
+    <Button.Group>
         <Button color="gray">
             Profile
         </Button>
@@ -135,7 +136,7 @@ const Skills = () => {
         <Button color="gray">
             Messages
         </Button>
-    </Button.Group> */}
+    </Button.Group>
 
 
     <p className="text-3xl font-semibold ml-2 mb-2" >Skills</p>

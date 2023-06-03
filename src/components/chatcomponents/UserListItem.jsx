@@ -1,8 +1,6 @@
 
-import { useAuthContext } from '../../context/AuthContext.jsx';
-
-const UserListItem = ({ handleFunction }) => {
-  const { user } = useAuthContext();
+const UserListItem = ({ user, handleFunction }) => {
+  
 
   return (
     <div
@@ -11,11 +9,11 @@ const UserListItem = ({ handleFunction }) => {
     >
       <img
         className="mr-2 h-8 w-8 rounded-full cursor-pointer"
-        src={user.pic}
-        alt={user.name}
+        src={user.imgUrl}
+        alt={user.firstName}
       />
       <div>
-        <p className="font-semibold">{user.name}</p>
+        <p className="font-semibold">{user.firstName} {user.lastName}</p>
         <p className="text-xs">
           <b>Email: </b>
           {user.email}

@@ -83,7 +83,7 @@ const GroupChatModal = ({ children }) => {
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6">Create Group Chat</h2>
+            <h2 className="text-2xl font-bold mb-6">Gruppe erstellen</h2>
             <button
               className="relative top-2 right-4 text-gray-400 hover:text-gray-600"
               onClick={handleClose}
@@ -104,7 +104,7 @@ const GroupChatModal = ({ children }) => {
               <input
                 className="border border-gray-300 px-3 py-2 w-full rounded"
                 type="text"
-                placeholder="Chat Name"
+                placeholder="Name"
                 value={groupChatName}
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
@@ -113,7 +113,7 @@ const GroupChatModal = ({ children }) => {
               <input
                 className="border border-gray-300 px-3 py-2 w-full rounded"
                 type="text"
-                placeholder="Add Users eg: John, Piyush, Jane"
+                placeholder="Nutzer hinzufügen zB. Renate, Marie, Julian"
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </div>
@@ -144,7 +144,7 @@ const GroupChatModal = ({ children }) => {
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
                 onClick={handleSubmit}
               >
-                Create Chat
+                Chat erstellen
               </button>
             </div>
           </div>

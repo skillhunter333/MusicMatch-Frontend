@@ -10,6 +10,8 @@ import { ChatState } from '../../context/ChatProvider';
 
 
 
+
+
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -29,22 +31,21 @@ const SideDrawer = () => {
 
 
 
-  const handleSearch = async () => {
-    if (!search) {
-        toastError('Please enter something in search');
-    
+    const handleSearch = async (query) => {
+    setSearch(query);
+    if (!query) {
       return;
     }
+
     try {
       setLoading(true);
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/user?search=${search}`, { withCredentials: true });
       setLoading(false);
       setSearchResult(data);
-     
+      console.log(searchResult);
     } catch (error) {
-            toastError(error.message || 'Failed to load search results');
-          }
-    
+      toastError("Failed to Load the Search Results");
+    }
   };
 
 
@@ -63,63 +64,43 @@ const SideDrawer = () => {
     }
   };
 
-  //Replaced some of the UI components.. needs to be adjusted
+  
 
   return (
     <>
-      <div className="flex justify-between items-center bg-white w-full p-5 border-5">
+    <div className="bg-black w-2/6">
+                
+        <form>   
+      
+      <div className="relative">
+        <input  type="search" 
+                id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                placeholder="Suche Musiker..." 
+                required
+                onChange={(e) => handleSearch(e.target.value)} />
+       
+         {loading ? (<ChatLoading />) : 
+            
+            ( searchResult?.slice(0, 4).map((user) => (
+              <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => accessChat(user._id)}
+                />
+              ))
+            )}
+    </div>
+    </form>
     
-        <div className="flex">
-          <div className="relative">
-            <div className="relative">
-</div>
+
+        
+
+
 
           
-          </div>
-        </div>
-      </div>
 
-      <div
-        className={`fixed inset-0 overflow-hidden ${isOpen ? "" : "hidden"}`}
-      >
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-          <div className="fixed inset-y-0 left-0 max-w-full flex">
-            <div className="relative w-screen max-w-md">
-              <div className="h-full flex flex-col bg-white shadow-xl">
-                <div className="px-4 py-2 border-b-2">Search Users</div>
-                <div className="flex flex-col flex-grow overflow-auto">
-                  <div className="flex pb-2">
-                    <input
-                      className="mr-2"
-                      type="text"
-                      placeholder="Search by name or email"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                    />
-                    <button className="px-2 py-1" onClick={handleSearch}>
-                      Go
-                    </button>
-                  </div>
-                  {loading ? (
-                    <ChatLoading />
-                  ) : (
-                    searchResult?.map((user) => (
-                      <UserListItem
-                        key={user._id}
-                        user={user}
-                        handleFunction={() => accessChat(user._id)}
-                      />
-                    ))
-                  )}
-                  {loadingChat && <div className="ml-auto flex"></div>}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
     </>
   );
 }

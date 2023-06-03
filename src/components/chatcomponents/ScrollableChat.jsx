@@ -18,14 +18,13 @@ const ScrollableChat = ({ messages }) => {
           <div className="flex" key={m._id}>
             {(isSameSender(messages, m, i, user._id) ||
               isLastMessage(messages, i, user._id)) && (
-              <div className="flex items-center">
-                
-                  <img
-                    className="h-8 w-8 rounded-full cursor-pointer"
-                    src={m.sender.imgUrl}
-                    alt={m.sender.firstName}
-                  />
-                
+              <div className="flex">
+                <img
+                  className="h-8 w-8 rounded-full cursor-pointer"
+                  src={m.sender.imgUrl}
+                  alt={m.sender.firstName}
+                />
+
                 <div className="ml-1">
                   <div className="text-xs">{m.sender.firstName}</div>
                 </div>
@@ -33,14 +32,16 @@ const ScrollableChat = ({ messages }) => {
             )}
             <div
               className={`${
-                m.sender._id === user._id ? "bg-blue-200 justify-start" : "bg-green-200 justify-end"
+                m.sender._id === user._id
+                  ? "bg-blue-200 justify-start"
+                  : "bg-green-200 justify-end"
               } ${
                 isSameSenderMargin(messages, m, i, user._id) ? "ml-2" : "ml-10"
               } ${
                 isSameUser(messages, m, i, user._id) ? "mt-2" : "mt-10"
               } rounded-lg py-1 px-3 max-w-75%`}
             >
-            {m.content}
+              {m.content}
             </div>
           </div>
         ))}

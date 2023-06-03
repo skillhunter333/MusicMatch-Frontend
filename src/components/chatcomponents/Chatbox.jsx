@@ -1,15 +1,8 @@
 import SingleChat from "./SingleChat";
-import { ChatState } from "../../context/ChatProvider";
 
 const Chatbox = ({ fetchAgain, setFetchAgain }) => {
-  const { selectedChat } = ChatState();
-
   return (
-    <div
-      className={`flex ${
-        selectedChat ? "flex" : "hidden"
-      } items-start flex-col p-3 bg-orange-400 w-full md:w-68  rounded-lg`}
-    >
+    <div className="items-start flex-col p-2 bg-purple-900 w-full rounded-lg">
       <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
     </div>
   );

@@ -25,17 +25,10 @@ const ProfilePage = () => {
     getUser()
   },[])
 
-  
   async function handleDeleteSkill(event){
-
     const skill = event.target.parentElement.parentElement.firstChild.firstChild.textContent
-
-    
-
-
     console.log('delete skill: ' + skill)
       
-
       try {
         
         const { data } = await axios.put(
@@ -113,6 +106,9 @@ const ProfilePage = () => {
             <div className="flex h-8 bg-slate-500">
               <p className="text-center">{user.firstName?user.firstName:'Vorname'}</p>
               <p className="text-center">{user.lastName?user.lastName:'Nachname'}</p>
+              <h2 class="text-4xl font-bold dark:text-white">Heading 2</h2>
+              
+
             </div>
             }
           <div className="w-11/12 bg-slate-300">

@@ -6,7 +6,8 @@ export default  {
   theme: {
     extend: {colors: {
       'orange': '#FEB117', 
-      'yellow': '#FEE305'
+      'yellow': '#FEE305',
+      'blue': '#3D2E55'
     }},
   },
   plugins: [require('flowbite/plugin')],

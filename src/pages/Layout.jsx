@@ -9,10 +9,10 @@ const Layout = () => {
       
       <ToastContainer className='mt-12'/>
       <NavBar />
-      <div className='mt-16 ml-5 mb-16 mr-5'>
+      <div className='mt-11 '>
         <Outlet />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

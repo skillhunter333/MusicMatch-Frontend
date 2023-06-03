@@ -1,19 +1,16 @@
-
 import { getSender, getSenderFull } from "./ChatLogics";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
-import animationData from "./typing.json";
-import ProfileModal from './ProfileModal';
+// import ProfileModal from './ProfileModal';
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import { ChatState } from "../../context/ChatProvider";
 import { useAuthContext } from "../../context/AuthContext";
 import { toastError } from "../../lib/toastify";
-import typing from './typing.json';
-import { motion } from 'framer-motion';
+// import typing from './typing.json';
 
-const ENDPOINT = import.meta.env.VITE_API_URL; 
+const ENDPOINT = import.meta.env.VITE_API_URL;
 let socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -24,14 +21,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
   const { selectedChat, setSelectedChat, notification, setNotification } =
     ChatState();
   const { user } = useAuthContext();
@@ -42,23 +39,38 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     try {
       setLoading(true);
 
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/message/${selectedChat._id}`, { withCredentials: true });
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/message/${selectedChat._id}`,
+        { withCredentials: true }
+      );
 
       setMessages(data);
       setLoading(false);
 
       socket.emit("join chat", selectedChat._id);
     } catch (error) {
-      toastError(error.message || 'error socket');
+      toastError(error.message || "error socket");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const form = event.target.form;
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.click();
+      sendMessage(event);
     }
   };
 
   const sendMessage = async (event) => {
-    if (event.key === "Enter" && newMessage) {
+    if (event.type === "submit" && newMessage) {
+      event.preventDefault();
       socket.emit("stop typing", selectedChat._id);
       try {
         setNewMessage("");
-        const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/message`, 
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat,
@@ -68,7 +80,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
-        toastError(error.message || 'failed to send the message');
+        toastError(error.message || "failed to send the message");
       }
     }
   };
@@ -128,77 +140,134 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   return (
-  <>
-    {selectedChat ? (
-      <>
-        <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-between items-center">
-          <button
-  className="flex md:hidden"
-  onClick={() => setSelectedChat("")}
-         ></button>
-          {messages &&
-            (!selectedChat.isGroupChat ? (
-              <>
-                {getSender(user, selectedChat.users)}
-                <ProfileModal
+    <div className="w-full pr-3 h-screen">
+      {selectedChat ? (
+        <div className="w-full h-screen">
+          <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-between items-center border-black">
+            <button
+              className="flex md:hidden"
+              onClick={() => setSelectedChat("")}
+            ></button>
+            {messages &&
+              (!selectedChat.isGroupChat ? (
+                <>
+                  {getSender(user, selectedChat.users)}
+                  {/* <ProfileModal
                   user={getSenderFull(user, selectedChat.users)}
-                />
-              </>
-            ) : (
-              <>
-                {selectedChat.chatName.toUpperCase()}
-                <UpdateGroupChatModal
-                  fetchMessages={fetchMessages}
-                  fetchAgain={fetchAgain}
-                  setFetchAgain={setFetchAgain}
-                />
-              </>
-            ))}
-        </div>
-        <div className="flex flex-col justify-end p-3 bg-gray-300 w-full h-full rounded-lg overflow-y-hidden">
-          {loading ? (
-            <div className="flex justify-center items-center h-full">
-              <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"></div>
-            </div>
-          ) : (
-            <div className="messages">
-              <ScrollableChat messages={messages} />
-            </div>
-          )}
+                /> */}
+                </>
+              ) : (
+                <>
+                  {selectedChat.chatName.toUpperCase()}
+                  {console.log(selectedChat)}
+                  <UpdateGroupChatModal
+                    fetchMessages={fetchMessages}
+                    fetchAgain={fetchAgain}
+                    setFetchAgain={setFetchAgain}
+                  />
+                </>
+              ))}
+          </div>
 
+          {/* Box with chat content:       */}
 
-          <div className="mt-3">
-            {istyping ? (
-            <div>
-            <motion.div
-            animate={typing}
-            />
-            </div>
+          <div className="flex flex-col justify-end p-9 bg-gray-300 w-full h-4/6 rounded-lg overflow-y-auto">
+            {loading ? (
+              <div className="flex justify-center items-center h-full">
+                <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"></div>
+              </div>
             ) : (
-              <></>
+              <div className="messages overflow-y-hidden h-screen">
+                <ScrollableChat messages={messages} />
+              </div>
             )}
-            <input
-              type="text"
-              className="w-full bg-gray-200 px-3 py-2"
-              placeholder="Enter a message.."
-              value={newMessage}
-              onChange={typingHandler}
-              onKeyDown={sendMessage}
 
+            {/* New input form for chat messages from flowbite */}
 
-            />
+            <form
+              onSubmit={sendMessage}
+              className="absolute bottom-5 right-20 w-4/6"
+            >
+              <label htmlFor="chat" className="sr-only">
+                Your message
+              </label>
+              <div className="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
+                <button
+                  type="button"
+                  className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="sr-only">Upload image</span>
+                </button>
+                <button
+                  type="button"
+                  className="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="sr-only">Add emoji</span>
+                </button>
+                <textarea
+                  id="chat"
+                  rows="1"
+                  className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Deine Nachricht..."
+                  value={newMessage}
+                  onChange={typingHandler}
+                  onKeyDown={handleKeyDown}
+                ></textarea>
+                <button
+                  type="submit"
+                  className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-6 h-6 rotate-90"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                  </svg>
+                  <span className="sr-only">Send message</span>
+                </button>
+              </div>
+            </form>
+            {/*  ////////////////  */}
           </div>
         </div>
-      </>
-    ) : (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-3xl pb-3 font-work-sans">
-          Click on a user to start chatting
-        </p>
-      </div>
-    )}
-  </>
-);
-    };
+      ) : (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-3xl pb-3 font-work-sans">
+            Click on a user to start chatting
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default SingleChat;

@@ -2,7 +2,7 @@ import Chatbox from './Chatbox';
 import ChatLoading from './ChatLoading';
 import GroupChatModal from './GroupChatModal';
 import MyChats from './MyChats';
-import ProfileModal from './ProfileModal';
+// import ProfileModal from './ProfileModal';
 import ScrollableChat from './ScrollableChat';
 import SideDrawer from './SideDrawer';
 import SingleChat from './SingleChat';

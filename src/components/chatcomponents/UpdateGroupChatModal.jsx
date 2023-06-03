@@ -227,7 +227,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
                     onClick={() => handleRemove(user)}
                     className="w-full sm:w-auto text-white bg-red-500 hover:bg-red-600 py-2 px-4 rounded"
                   >
-                    Leave Group
+                    Gruppe verlassen
                   </button>
                 </div>
               </div>

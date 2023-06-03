@@ -12,9 +12,9 @@ const Chat = () => {
 
   return (
     <>
-       <div style={{ width: "100%" }}>
+       <div className="w-full">
       {user && <SideDrawer />}
-      <div className="flex justify-between w-full h-[91.5vh] p-10">
+      <div className="flex justify-between w-full h-[91.5vh] p-10 bg-slate-300">
         {user && <MyChats fetchAgain={fetchAgain} />}
         {user && (
           <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />

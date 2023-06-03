@@ -5,9 +5,9 @@ export default  {
   darkMode: 'class',
   theme: {
     extend: {colors: {
-      'orange': '#FEB117', 
-      'yellow': '#FEE305',
-      'blue': '#3D2E55'
+      'mmOrange': '#FEB117', 
+      'mmYellow': '#FEE305',
+      'mmBlue': '#3D2E55'
     }},
   },
   plugins: [require('flowbite/plugin')],

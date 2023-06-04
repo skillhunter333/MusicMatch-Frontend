@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import getUserById from '../utils.js/getUserById'
 import axios from 'axios'
 import { Modal, Button, TextInput } from 'flowbite-react';
+import { useNavigate, Link } from 'react-router-dom';
 
 //Keine Self-Ratings in Datenbank? + evtl. Minitext zu Skills/Interests
 
@@ -16,11 +17,40 @@ const ProfilePage = () => {
   const [charDesc, setCharDesc] = useState('')
   const [charType, setCharType] = useState('')
   const [charName, setCharName] = useState('')
+
+  const navigate = useNavigate();
   
 
   useEffect(()=>{
     updateUser()
   },[])
+
+  function handleInterestClick(){
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+  
+  
+  
+  
+  
+  
+ 
+    
+  
+ 
+     //navigate('/login')
+     
+
+
+
+
 
   
   async function updateUser(){
@@ -42,18 +72,14 @@ const ProfilePage = () => {
       const newCharDesc = event.target.parentElement.parentElement.parentElement.children[1].firstChild.firstChild.firstChild.firstChild.value
 
       if(charDesc!==newCharDesc){
-        
         if(charType!=='skill' && charType!=='interest') throw new Error('unknown characteristics type')
-
         if(charType==='skill'){
           await handleDeleteSkill(charName)
           handleAddSkill(charName, newCharDesc)
-        } 
-        if(charType==='interest'){
+        } else {
           handleDeleteInterest(charName)
           handleAddInterest(charName, newCharDesc)
         }
-        
       }
       setOpenModal(0)
       updateUser()
@@ -140,12 +166,10 @@ const ProfilePage = () => {
     try {
       console.log('handleEdit fired')
 
-      console.log(event.target.textContent)
-
       event.target.textContent==='Beschreibung einfügen...'
         ? setCharDesc('')
         : setCharDesc(event.target.textContent)
-
+      
       setCharName(event.target.parentElement.firstChild.textContent)
       setCharType(event.target.attributes.charType.value)
 
@@ -182,18 +206,13 @@ const ProfilePage = () => {
           />
      
        
-
         {/*COL column with name and description*/}
         <div className="flex flex-col w-11/12 ml-4 gap-4 p-2  ">
           {/*ROW with first and lastname*/}
           {user && 
             <div className="flex  gap-4">
-              {/* <p className="text-center">{user.firstName?user.firstName:'Vorname'}</p>
-              <p className="text-center">{user.lastName?user.lastName:'Nachname'}</p> */}
               <h2 class="text-4xl font-bold dark:text-white">{user.firstName?user.firstName:'Vorname'}</h2>
               <h2 class="text-4xl font-bold dark:text-white">{user.lastName?user.lastName:'Nachname'}</h2>
-              
-
             </div>
             }
           <div className="w-11/12  ">
@@ -213,8 +232,8 @@ const ProfilePage = () => {
           {user && user.interests.map((interest, index) => (
           <div key={index} className="bg-white rounded">
             <div className="flex flex-wrap p-2 ">
-              <button onClick={()=>{}} className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900">{interest.name}</button>
-              <button charType="interest" onClick={handleDescClick} className="pl-2 mt-2 text-left ">{interest.description===''?<span className="text-slate-400">Beschreibung einfügen...</span>:interest.description}</button>
+              <Link to="/auth/skills" onClick={()=>{}} className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900">{interest.name}</Link>
+              <button charType="interest" onClick={handleDescClick} className={`pl-2 mt-2 text-left ${interest.description===''?'text-slate-400':''} `}>{interest.description===''?'Beschreibung einfügen...':interest.description}</button>
             </div>
           </div>
 
@@ -227,14 +246,14 @@ const ProfilePage = () => {
 
 
        {/* ROW with skills */}
-       <div className="flex flex-col gap-2 bg-slate-100 p-4 ">
+       <div className="flex flex-col gap-2 bg-slate-100 p-4 mb-8">
           <h2 className="font-bold text-mmOrange">Fähigkeiten</h2>
           {/* ROW  for single interests*/}
           {user && user.skills.map((skill, index) => (
           <div key={index} className="bg-white rounded">
             <div className="flex flex-wrap p-2 ">
-              <button onClick={()=>{}} className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900">{skill.name}</button>
-              <button charType="skill" onClick={handleDescClick} className="pl-2 mt-2 text-left ">{skill.description===''?<span className="text-slate-400">Beschreibung einfügen...</span>:skill.description}</button>
+              <Link to="/auth/skills"  onClick={handleInterestClick} className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900">{skill.name}</Link>
+              <button charType="skill" onClick={handleDescClick} className={`pl-2 mt-2 text-left ${skill.description===''?'text-slate-400':''} `} >{skill.description===''?'Beschreibung einfügen...':skill.description}</button>
             </div>
           </div>
 

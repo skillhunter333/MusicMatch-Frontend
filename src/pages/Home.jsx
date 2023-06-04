@@ -15,7 +15,8 @@ const Home = () => {
     <div className="bg-mmOrange h-screen">
       
     
-      {/* <img src="src\images\hero.png" alt="asdfasdf"></img> */}
+      {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
+      
       <section className="bg-contain bg-right bg-no-repeat bg-[url('src/images/hero.png')] h-screen ">
 
       <div className="w-6/12 ">

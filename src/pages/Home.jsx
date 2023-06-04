@@ -17,7 +17,7 @@ const Home = () => {
   
   return (
     <>
-    <div className="bg-orange h-screen">
+    <div className="bg-mmOrange h-screen">
       
     
       {/* <img src="src\images\hero.png" alt="asdfasdf"></img> */}

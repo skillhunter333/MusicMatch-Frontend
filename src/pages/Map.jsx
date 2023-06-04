@@ -95,8 +95,8 @@ const Map = () => {
         
     return (
     
-    <div className=" bg-mmOrange h-screen ">
-        <div className="mx-auto  h-4/5 w-4/5">
+    <div className="flex bg-mmOrange h-screen items-center  ">
+        <div className="mx-auto  h-4/5 w-4/5 bg-[url('src/images/hero.png')]">
         {/* <div className="mt-20 ml-8 mr-8 bg-slate-400 h-6/12"> */}
          <h1 className="text-3xl text-whitefont-semibold mb-2">Finde Musiker in deiner Umgegung...</h1>
            

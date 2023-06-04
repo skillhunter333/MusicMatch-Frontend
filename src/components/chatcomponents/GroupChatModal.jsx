@@ -26,15 +26,6 @@ const GroupChatModal = ({ children }) => {
     setIsOpen(false);
   };
 
-  const handleGroup = (userToAdd) => {
-    if (selectedUsers.includes(userToAdd)) {
-      toastError("User already added");
-      return;
-    }
-
-    setSelectedUsers([...selectedUsers, userToAdd]);
-  };
-
   const handleSearch = async (query) => {
     setSearch(query);
     if (!query) {

@@ -1,30 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
 import { ChatState } from "../../context/ChatProvider";
-import { toastError, toastSuccess } from "../../lib/toastify";
+import { toastError } from "../../lib/toastify";
 import { useAuthContext } from "../../context/AuthContext";
-import UserBadgeItem from "./UserBadgeItem";
 import UserListItem from "./UserListItem";
 // import { MdClose } from "react-icons/md";
 
-const GroupChatModal = ({ children }) => {
-  const [groupChatName, setGroupChatName] = useState("");
-  const [selectedUsers, setSelectedUsers] = useState([]);
+const SearchUserModal = ({ children }) => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingChat, setLoadingChat] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { chats, setChats } = ChatState();
-  const { user } = useAuthContext();
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const { setSelectedChat, notification, setNotification, chats, setChats } =
+    ChatState();
 
   const handleSearch = async (query) => {
     setSearch(query);
@@ -40,6 +30,7 @@ const GroupChatModal = ({ children }) => {
       );
       setLoading(false);
       setSearchResult(data);
+      console.log(searchResult);
     } catch (error) {
       toastError("Failed to Load the Search Results");
     }
@@ -64,8 +55,6 @@ const GroupChatModal = ({ children }) => {
 
   return (
     <>
-      <span onClick={handleOpen}>{children}</span>
-
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
@@ -88,34 +77,45 @@ const GroupChatModal = ({ children }) => {
                 <path d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
-
             <div className="mb-4">
               <input
                 className="border border-gray-300 px-3 py-2 w-full text-black rounded"
                 type="text"
-                placeholder="Nutzer hinzufügen zB. Renate, Marie, Julian"
+                placeholder="Nutzer nach Namen oder e-mail suchen..."
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </div>
 
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              searchResult
-                ?.slice(0, 4)
-                .map((user) => (
-                  <UserListItem
-                    key={user._id}
-                    user={user}
-                    handleFunction={() => accessChat(user._id)}
-                  />
-                ))
-            )}
+            {loading
+              ? setLoading(true)
+              : searchResult
+                  ?.slice(0, 4)
+                  .map((user) => (
+                    <UserListItem
+                      key={user._id}
+                      user={user}
+                      handleFunction={() => accessChat(user._id)}
+                    />
+                  ))}
           </div>
         </div>
+
+        // <div className="w-1/5 relative flex justify-center">
+        //   {loading
+        //     ? setLoading(true)
+        //     : searchResult
+        //         ?.slice(0, 4)
+        //         .map((user) => (
+        //           <UserListItem
+        //             key={user._id}
+        //             user={user}
+        //             handleFunction={() => accessChat(user._id)}
+        //           />
+        //         ))}
+        // </div>
       )}
     </>
   );
 };
 
-export default GroupChatModal;
+export default SearchUserModal;

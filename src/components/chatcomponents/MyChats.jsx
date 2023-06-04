@@ -7,7 +7,7 @@ import { ChatState } from "../../context/ChatProvider";
 import { useAuthContext } from "../../context/AuthContext";
 import { toastError } from "../../lib/toastify";
 import { Button } from "flowbite-react";
-// import { SearchUserModal } from "./SearchUserModal";
+import SearchUserModal from "./SearchUserModal";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -39,11 +39,11 @@ const MyChats = ({ fetchAgain }) => {
     <div className=" p-3 items-center flex flex-col bg-black  w-1/3 rounded-l-lg border-black ">
       <div className="pb-3 pl-3 font-bold text-2xl flex w-full justify-between items-center text-white">
         Meine Chats
-        {/* <SearchUserModal>
+        <SearchUserModal>
           <Button gradientDuoTone="pinkToOrange" outline>
             <p>Nutzer finden...</p>
           </Button>
-        </SearchUserModal> */}
+        </SearchUserModal>
         <GroupChatModal>
           <Button gradientDuoTone="pinkToOrange" outline>
             <p>Neue Gruppe</p>

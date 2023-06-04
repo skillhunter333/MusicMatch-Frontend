@@ -7,6 +7,7 @@ import { ChatState } from "../../context/ChatProvider";
 import { useAuthContext } from "../../context/AuthContext";
 import { toastError } from "../../lib/toastify";
 import { Button } from "flowbite-react";
+// import { SearchUserModal } from "./SearchUserModal";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -35,9 +36,14 @@ const MyChats = ({ fetchAgain }) => {
   }, [fetchAgain]);
 
   return (
-    <div className=" p-3 items-center flex flex-col bg-blue-400 w-full md:w-1/3 rounded-lg border ">
-      <div className="pb-3 pl-3 font-bold text-2xl flex w-full justify-between items-center">
-        Chats
+    <div className=" p-3 items-center flex flex-col bg-black  w-1/3 rounded-l-lg border-black ">
+      <div className="pb-3 pl-3 font-bold text-2xl flex w-full justify-between items-center text-white">
+        Meine Chats
+        {/* <SearchUserModal>
+          <Button gradientDuoTone="pinkToOrange" outline>
+            <p>Nutzer finden...</p>
+          </Button>
+        </SearchUserModal> */}
         <GroupChatModal>
           <Button gradientDuoTone="pinkToOrange" outline>
             <p>Neue Gruppe</p>
@@ -47,7 +53,7 @@ const MyChats = ({ fetchAgain }) => {
 
       <div className="flex flex-col p-3 bg-gray-200 w-full h-full rounded-lg overflow-y-hidden">
         {chats ? (
-          <div className="overflow-y-scroll">
+          <div className="flex flex-col overflow-y-scroll gap-1">
             {chats.map((chat) => (
               <div
                 onClick={() => setSelectedChat(chat)}

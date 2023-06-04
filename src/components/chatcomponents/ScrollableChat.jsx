@@ -32,9 +32,7 @@ const ScrollableChat = ({ messages }) => {
             )}
             <div
               className={`${
-                m.sender._id === user._id
-                  ? "bg-blue-200 justify-start"
-                  : "bg-green-200 justify-end"
+                m.sender._id === user._id ? "bg-blue-200" : "bg-green-200"
               } ${
                 isSameSenderMargin(messages, m, i, user._id) ? "ml-2" : "ml-10"
               } ${

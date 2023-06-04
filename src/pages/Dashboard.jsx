@@ -12,6 +12,7 @@ const { user } = useAuthContext();
 
   return (
     <>
+    
       <div className='p-1 flex flex-col items-center'>
               <h1 className='text-3xl font-semibold mb-8'>Dashboard</h1>
               <h2 className='text-lg font-thin mb-12'>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import getUserById from '../utils.js/getUserById'
 import { useNavigate } from 'react-router-dom';
 import { Card, Dropdown } from 'flowbite-react';
+import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 
 
 
@@ -69,51 +70,54 @@ const Matching = () => {
     return (
     
     <div className="bg-mmOrange h-full">
-
-        <div className="flex flex-col items-center  bg-mmBlue">
+      
+        <div className="flex flex-col items-center  ">
 
             <h1 className='text-3xl font-semibold mb-8' >Finde dein MusicMatch!</h1>
-            <h1 className='text-3xl font-semibold mb-8' >Finde dein MusicMatch!</h1>
+            <div>
+                {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
+                <h1 className='text-3xl font-semibold mb-8' >Finde dein MusicMatch!</h1>
+            </div>
        
-            <div className="flex flex-col items-center w-6/12 border-solid border-2">
+            <div className="flex flex-col items-center w-6/12 border-solid border-2 rounded-lg  ">
 
-                <div className="flex h-96 w-full">
+                <div className="flex h-96 w-full ">
                  
-                    <div className="flex flex-col items-center w-full text-white text-1xl bg-zinc-500 ">
+                    <div className="flex flex-col items-center w-full text-white text-1xl ">
                         {/* <h2 className="text-2xl">{matches? `Match(${matchesIndex +1 }/${matches.length})`: ''}</h2> */}
-                        <img className="w-1/2 rounded-full mt-6" src={matchedUser && matchedUser.imgUrl} alt="user img"></img>
-                        <p>{matchedUser && matchedUser.firstName}</p>
-                        {matchedUser ? <p>Gemeinsamkeiten: {matches[matchesIndex].user.matches.length} </p> : '' }
+                        <div className="flex items-center justify-around ">
+                            <BiChevronLeft className={`text-4xl  ${matchesIndex? 'cursor-pointer' : 'text-mmOrange '}`} onClick={handlePrevBtn}/>
+                            <img className={`w-2/5 rounded-full mt-6 mb-4 ${matchedUser?'':'hidden'}`} src={matchedUser && matchedUser.imgUrl} alt="user img"></img>
+                            <BiChevronRight className={`text-4xl  ${matchedUser && matchesIndex < matches.length -1 ?'cursor-pointer':'text-mmOrange '}`} onClick={handleNextBtn}/>
+                        </div>
+                        <p className="text-2xl  dark:text-white">{matchedUser && matchedUser.firstName}</p>
+                        {matchedUser ? <div><span className="bg-mmOrange rounded">{matches[matchesIndex].user.matches.length}</span>  <span>Gemeinsamkeit(en)</span></div>  : '' }
                     </div>
 
                 </div>
 
 
-                <div className=" flex h-12 w-full text-white text-1xl bg-zinc-500" >
-                    <button onClick={handleChatBtn} className="w-4/12  text-white text-1xl bg-slate-500 ">
+                <div className=" flex h-12 w-full text-white text-1xl " >
+                    <button onClick={handleChatBtn} className="w-4/12  text-white text-1xl  ">
                         {matchedUser && 'Chat'} 
                     </button>
-                    <button onClick={handleProfileBtn} className="w-4/12  text-white text-1xl bg-slate-500 ">
+                    <button onClick={handleProfileBtn} className="w-4/12  text-white text-1xl  ">
                         {matchedUser && 'Profil'} 
                     </button>
-                    <button onClick={handleSaveBtn} className="w-4/12  text-white text-1xl bg-slate-500 ">
+                    <button onClick={handleSaveBtn} className="w-4/12  text-white text-1xl  ">
                         {matchedUser && 'Speichern'} 
                     </button>
                 </div>
 
-                <button onClick={handleGetMatchBtn} className="w-full h-12 text-white text-1xl bg-amber-500" >
+                <button onClick={handleGetMatchBtn} className="w-full h-12 text-white text-1xl bg-slate-800 rounded-b-lg" >
                         get match
                 </button>
 
 
             </div>
 
-                <button disabled={matchesIndex? false : true} onClick={handlePrevBtn} className="w-1/12  text-white text-1xl bg-slate-500 ">
-                            {matchesIndex? 'prev':''} 
-                </button>
-                <button disabled={matchedUser && matchesIndex < matches.length -1 ?false:true} onClick={handleNextBtn} className=" w-1/12 text-white text-1xl bg-slate-500">
-                            {matchedUser && matchesIndex < matches.length -1 ?'next':''}
-                </button>
+              
+                        
         </div>
 
     </div>

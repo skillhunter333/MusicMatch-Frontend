@@ -16,8 +16,8 @@ const Map = () => {
     const [viewPort, setViewPort] = useState({
         latitude: user.latitude,
         longitude: user.longitude,
-        width: '50vw',
-        height: '50vh',
+        // width: '50vw',
+        // height: '55vh',
         zoom: 12
     })
 
@@ -94,11 +94,16 @@ const Map = () => {
       }
         
     return (
-        <>  <h1>Finde Musiker in deiner Umgegung...</h1>
+    
+    <div className=" bg-mmOrange h-screen ">
+        <div className="mx-auto  h-4/5 w-4/5">
+        {/* <div className="mt-20 ml-8 mr-8 bg-slate-400 h-6/12"> */}
+         <h1 className="text-3xl text-whitefont-semibold mb-2">Finde Musiker in deiner Umgegung...</h1>
            
            <ReactMapGL 
                 {...viewPort}
-                style={{width: 700, height: 400}}
+            
+                style={{width: '100%', height: '100%'}}
                 onMove={evt => setViewPort(evt.viewPort)}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
                 mapboxAccessToken={import.meta.env.VITE_MAPBOX_KEY}>
@@ -126,7 +131,9 @@ const Map = () => {
                 </Popup>)}
 
            </ReactMapGL>
-        </>
+        </div>
+
+    </div>
     
     );
 };

@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import getUserById from '../utils.js/getUserById'
 import axios from 'axios'
 import { Modal, Button, TextInput } from 'flowbite-react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //Keine Self-Ratings in Datenbank? + evtl. Minitext zu Skills/Interests
 
@@ -18,8 +18,6 @@ const ProfilePage = () => {
   const [charType, setCharType] = useState('')
   const [charName, setCharName] = useState('')
 
-  const navigate = useNavigate();
-  
 
   useEffect(()=>{
     updateUser()
@@ -32,25 +30,6 @@ const ProfilePage = () => {
       console.log(error)
     }
   }
-
-
-
-  
-  
-  
-  
-  
-  
- 
-    
-  
- 
-     //navigate('/login')
-     
-
-
-
-
 
   
   async function updateUser(){
@@ -77,7 +56,7 @@ const ProfilePage = () => {
           await handleDeleteSkill(charName)
           handleAddSkill(charName, newCharDesc)
         } else {
-          handleDeleteInterest(charName)
+          await handleDeleteInterest(charName)
           handleAddInterest(charName, newCharDesc)
         }
       }
@@ -239,8 +218,6 @@ const ProfilePage = () => {
 
           ))}
           </div>
-
-
 
 
 

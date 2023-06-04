@@ -1,22 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
-
-
-
-
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-   function handleGetStartedBtn(){
-   console.log('handleProfileBtn has been clicked (hard)')
-   navigate('/login')
-   }
-  
+  function handleGetStartedBtn() {
+    console.log("handleProfileBtn has been clicked (hard)");
+    navigate("/login");
+  }
+
   return (
     <>
+
     <div className="bg-mmOrange h-screen">
       
     
@@ -37,28 +32,15 @@ const Home = () => {
                         Learn more
                     </button>  
                 </div>
+
+    
+
             </div>
+          </div>
+        </section>
       </div>
-     
-      </section>
-
-    </div>
     </>
-
   );
 };
 
 export default Home;
-
-
-/*
-
-
-
-
-*/
-
-
-
-
-

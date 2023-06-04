@@ -13,7 +13,7 @@ const Chat = () => {
         {/* render mychats and the box which will render the actual chat */}
 
         <div>
-          <div className="flex justify-between w-full h-[91.5vh] p-10 bg-slate-300">
+          <div className="flex justify-between w-full h-[95vh] p-10 bg-slate-300 mt-12">
             {user && <MyChats fetchAgain={fetchAgain} />}
             {user && (
               <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />

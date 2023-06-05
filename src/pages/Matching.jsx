@@ -1,69 +1,92 @@
 import { useAuthContext } from "../context/AuthContext";
-import { useParams } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios'
-import getUserById from '../utils.js/getUserById'
-import { useNavigate } from 'react-router-dom';
-import { Card, Dropdown } from 'flowbite-react';
+import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import getUserById from "../utils.js/getUserById";
+import { useNavigate } from "react-router-dom";
+import { Card, Dropdown } from "flowbite-react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
-
-
-
+import { toastError, toastSuccess } from "../lib/toastify";
+import { ChatState } from "../context/ChatProvider";
 
 const Matching = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     const [matches, setMatches] = useState(null)
     const [matchedUser, setMatchedUser] = useState(null)
     const [matchesIndex, setMatchesIndex] = useState(0)
     const [dropDown, setDropDown] = useState(false)
 
+  const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
+  const [loading, setLoading] = useState(false);
 
-    async function handleGetMatchBtn(){
-        try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/users/getmatches`,
-                {
-                    withCredentials: true,
-                }
-            )
-        console.log(data)
-        setMatches(data)
-        const user = await getUserById(data[matchesIndex].user._id)
-        setMatchedUser(user)
-        } catch (error) {
-            console.log(error)
+  async function handleGetMatchBtn() {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/getmatches`,
+        {
+          withCredentials: true,
         }
+      );
+      console.log(data);
+      setMatches(data);
+      const user = await getUserById(data[matchesIndex].user._id);
+      setMatchedUser(user);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    async function handleNextBtn(){
-        if(matchesIndex < (matches.length -1)){
-            const newIndex = matchesIndex +1 
-            setMatchesIndex(newIndex) 
-            const user = await getUserById(matches[newIndex].user._id)
-            setMatchedUser(user)
-        } 
+  async function handleNextBtn() {
+    if (matchesIndex < matches.length - 1) {
+      const newIndex = matchesIndex + 1;
+      setMatchesIndex(newIndex);
+      const user = await getUserById(matches[newIndex].user._id);
+      setMatchedUser(user);
     }
-   
-    async function handlePrevBtn(){
-        if(matchesIndex){
-            console.log('A')
-            const newIndex = matchesIndex - 1 
-            setMatchesIndex(newIndex) 
-            const user = await getUserById(matches[newIndex].user._id)
-            setMatchedUser(user)
-        } 
-    }
+  }
 
-
-    function handleChatBtn(){
-        console.log('handleChatBtn has been clicked (hard)')
-        console.log(matches[matchesIndex].user.matches)
+  async function handlePrevBtn() {
+    if (matchesIndex) {
+      console.log("A");
+      const newIndex = matchesIndex - 1;
+      setMatchesIndex(newIndex);
+      const user = await getUserById(matches[newIndex].user._id);
+      setMatchedUser(user);
     }
+  }
 
-    function handleProfileBtn(){
-        console.log('handleProfileBtn has been clicked (hard)')
-        navigate(`/auth/profile/${matchedUser._id}`)
+  const accessChat = async (userId) => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/chat`,
+        { userId },
+        { withCredentials: true }
+      );
+
+      if (!chats.find((c) => c._id === data._id)) setChats([...chats, data]);
+      setSelectedChat(data);
+      setLoading(false);
+    } catch (error) {
+      toastError(error.message || "Error fetching the chat");
     }
+  };
+
+  function handleChatBtn() {
+    try {
+      accessChat(matches[matchesIndex].user._id);
+      toastSuccess("Nutzer zu deinen Chats hinzugefügt");
+    } catch (error) {
+      toastError(error.message);
+      console.log(error);
+    }
+  }
+
+  function handleProfileBtn() {
+    console.log("handleProfileBtn has been clicked (hard)");
+    navigate(`/auth/profile/${matchedUser._id}`);
+  }
 
     function handleSaveBtn(){
         console.log('handleSaveBtn has been clicked (hard)')
@@ -103,23 +126,49 @@ const Matching = () => {
                     </div>
 
                 </div>
+              ) : (
+                ""
+              )}
 
-              
-                <div className={` flex h-12 w-full text-white text-1xl ${matchedUser?'':'hidden'}`} >
-                    <button onClick={handleChatBtn} className="w-4/12  text-white text-1xl  ">
-                        {matchedUser && 'Chat'} 
-                    </button>
-                    <button onClick={handleProfileBtn} className="w-4/12  text-white text-1xl  ">
-                        {matchedUser && 'Profil'} 
-                    </button>
-                    <button onClick={handleSaveBtn} className="w-4/12  text-white text-1xl  ">
-                        {matchedUser && 'Speichern'} 
-                    </button>
-                </div>
+              <p className="border-y py-2 mt-3 ">
+                {matchedUser && matchedUser.userDescription}
+              </p>
+            </div>
+          </div>
 
-                <button onClick={handleGetMatchBtn} className={`w-full h-12 text-white text-1xl bg-black ${matchedUser?'rounded-b-lg':'rounded-lg'}`} >
-                        get match
-                </button>
+          <div
+            className={` flex h-12 w-full text-white text-1xl ${
+              matchedUser ? "" : "hidden"
+            }`}
+          >
+            <button
+              onClick={handleChatBtn}
+              className="w-4/12  text-white text-1xl  "
+            >
+              {matchedUser && "Chat"}
+            </button>
+            <button
+              onClick={handleProfileBtn}
+              className="w-4/12  text-white text-1xl  "
+            >
+              {matchedUser && "Profil"}
+            </button>
+            <button
+              onClick={handleSaveBtn}
+              className="w-4/12  text-white text-1xl  "
+            >
+              {matchedUser && "Speichern"}
+            </button>
+          </div>
+
+          <button
+            onClick={handleGetMatchBtn}
+            className={`w-full h-12 text-white text-1xl bg-black ${
+              matchedUser ? "rounded-b-lg" : "rounded-lg"
+            }`}
+          >
+            get match
+          </button>
 
             </div>
 
@@ -141,10 +190,7 @@ const Matching = () => {
         </div>
 
     </div>
-
-
-
-    );
+  );
 };
 
 export default Matching;

@@ -30,35 +30,62 @@ const Dashboard = () => {
                       </div>
             </div>
 
-            <div onClick={() => navigate('/auth/map')} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
-                      <img className="w-full h-80" src="/src/images/dashboard_map.png" alt="Sunset in the mountains"></img>
-                      <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">Map</div>
-                        <p className="text-gray-700 text-base">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                        </p>
-                      </div>
+          <div
+            onClick={() => navigate("/auth/map")}
+            className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50"
+          >
+            <img
+              className="w-full h-80"
+              src="/src/images/dashboard_map.png"
+              alt="Sunset in the mountains"
+            ></img>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">Map</div>
+              <p className="text-gray-700 text-base">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                exercitationem praesentium nihil.
+              </p>
             </div>
+          </div>
 
-            <div onClick={() => navigate('/auth/matching')} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
-                      <img className="w-full h-80" src="/src/images/logo.png" alt="Music match logo"></img>
-                      <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">MusicMatch</div>
-                        <p className="text-gray-700 text-base">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                        </p>
-                      </div>
+          <div
+            onClick={() => navigate("/auth/matching")}
+            className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50"
+          >
+            <img
+              className="w-full h-80"
+              src="/src/images/logo.png"
+              alt="Music match logo"
+            ></img>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">MusicMatch</div>
+              <p className="text-gray-700 text-base">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                exercitationem praesentium nihil.
+              </p>
             </div>
+          </div>
 
-            <div onClick={() => navigate(`/auth/profile/${user._id}`)} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
-                      <img className="w-full h-80" src="/src/images/dashboard_profile.png" alt="Music match logo"></img>
-                      <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">Profil</div>
-                        <p className="text-gray-700 text-base">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                        </p>
-                      </div>
+          <div
+            onClick={() => navigate(`/auth/profile/${user._id}`)}
+            className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50"
+          >
+            <img
+              className="w-full h-80"
+              src="/src/images/dashboard_profile.png"
+              alt="Music match logo"
+            ></img>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">Profil</div>
+              <p className="text-gray-700 text-base">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                exercitationem praesentium nihil.
+              </p>
             </div>
+          </div>
 
             <div onClick={() => navigate(`/auth/skills/`)} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
                       <img className="w-full h-80" src="/src/images/dashboard_interests.png" alt="Music match logo"></img>

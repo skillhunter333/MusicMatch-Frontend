@@ -65,7 +65,7 @@ const MenuList = ({ dropdown = false }) => {
           </li>
           <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer'>
           <img
-            className="rounded-full w-12 h-12 mb-4 mt-4"
+            className="rounded-full w-12 h-12 mb-4 mt-4 p-1"
             src={user.imgUrl}
             alt="Profile Avatar"
             />

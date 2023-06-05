@@ -15,39 +15,78 @@ const { user } = useAuthContext();
 
     <div className="bg-slate-800 h-full">
 
-        <div className="flex flex-col h-full justify-center items-center">
-          
-            {/* <div className='p-1 flex flex-col items-center'>
-                    <h1 className='text-4xl font-semibold mb-8'>Dashboard</h1>
-               
-            </div> */}
+        <div className="flex flex-col h-full justify-center items-center mx-2">
+
+          <h1 className="text-4xl mb-5 text-slate-100">Dashboard</h1>
+                  
 
             <div className="flex flex-wrap gap-y-4 gap-x-4 justify-center">
-                  <div>
-                    <button onClick={() => navigate('/auth/chat')} className="w-64 flex items-center justify-center  h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
-                      <HiChatAlt2 />
-                    </button>
-                  </div>
-                  <div>
-                    <button onClick={() => navigate('/auth/map')} className="w-64 flex items-center justify-center  h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
-                      <HiMap />
-                    </button>
-                  </div>
-                  <div>
-                    <button onClick={() => navigate('/auth/matching')} className=" w-64 flex items-center justify-center  h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
-                      <HiOutlineStar />
-                    </button>
-                  </div>
-                  <div>
-                    <button onClick={() => navigate(`/auth/profile/${user._id}`)} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
-                      <HiUserCircle />
-                    </button>
-                  </div>
+
+            <div onClick={() => navigate('/auth/chat')} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
+                      <img className="w-full h-80" src="/src/images/dashboard_chat.png" alt="Sunset in the mountains"></img>
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">Chat</div>
+                        <p className="text-gray-700 text-base">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                      </div>
+            </div>
+
+            <div onClick={() => navigate('/auth/map')} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
+                      <img className="w-full h-80" src="/src/images/dashboard_map.png" alt="Sunset in the mountains"></img>
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">Map</div>
+                        <p className="text-gray-700 text-base">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                      </div>
+            </div>
+
+            <div onClick={() => navigate('/auth/matching')} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
+                      <img className="w-full h-80" src="/src/images/logo.png" alt="Music match logo"></img>
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">MusicMatch</div>
+                        <p className="text-gray-700 text-base">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                      </div>
+            </div>
+
+            <div onClick={() => navigate(`/auth/profile/${user._id}`)} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
+                      <img className="w-full h-80" src="/src/images/dashboard_profile.png" alt="Music match logo"></img>
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">Profil</div>
+                        <p className="text-gray-700 text-base">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                      </div>
+            </div>
+
+            <div onClick={() => navigate(`/auth/skills/${user._id}`)} className="max-w-xs rounded overflow-hidden shadow-lg bg-slate-50">
+                      <img className="w-full h-80" src="/src/images/dashboard_profile.png" alt="Music match logo"></img>
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">Profil</div>
+                        <p className="text-gray-700 text-base">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                        </p>
+                      </div>
+            </div>
+
+
+
+
+               
+             
+               
                   <div>
                     <button onClick={() => navigate(`/auth/skills`)} className="w-64 flex items-center justify-center flex-1 h-32 bg-zinc-500 text-white text-4xl rounded-lg shadow-lg">
                       <SlRocket />
                     </button>
                   </div>  
+
+                
+
+
             </div>
 
         </div>

@@ -126,7 +126,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
   };
 
   return (
-    <div className="bg-mmGrey w-3/4 h-full rounded-r-lg">
+    <div className="bg-slate-800 w-3/4 h-full rounded-r-lg">
       {selectedChat ? (
         // <div className="w-full h-screen mt-6 pr-6">
         <div className="w-full h-full overflow-hidden pb-6 pt-16 px-4">
@@ -162,7 +162,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
 
           {/* Box with chat content:       */}
           <div className="w-full h-full flex flex-col items-center justify-center">
-            <div className="flex flex-col justify-end p-9 bg-zinc-300 w-full h-[90%] rounded-t-lg overflow-y-auto">
+            <div className="flex flex-col justify-end p-4 bg-zinc-300 w-full h-[90%] rounded-t-lg overflow-y-auto">
               {loading ? (
                 <div className="flex justify-center items-center h-full">
                   <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"></div>
@@ -177,7 +177,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
 
             {/*input form for chat messages from flowbite */}
 
-            <form onSubmit={sendMessage} className="flex flex-col w-full ">
+            <form onSubmit={sendMessage} className="flex flex-col w-full -mb-4">
               <div className="flex items-center px-3 py-2 rounded-b-lg bg-gray-50 dark:bg-red-700">
                 <button
                   type="button"

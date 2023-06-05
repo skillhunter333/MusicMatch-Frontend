@@ -9,7 +9,7 @@ const Chat = () => {
 
   return (
     <>
-      {/* render mychats and the box which will render the actual chat */}
+      {/* render mychats and the chatbox which will render the actual chat */}
 
       <div>
         <div className="flex justify-between w-full h-[95vh] p-10 bg-slate-600 mt-12">

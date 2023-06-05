@@ -97,9 +97,22 @@ const Matching = () => {
       <div className="flex flex-col items-center  h-full justify-center">
         <div>
           {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
-          <h1 className="text-3xl font-semibold mb-8">
-            {matchedUser ? "" : "Finde dein MusicMatch!"}
-          </h1>
+          <div className="text-3xl font-semibold mb-8"></div>
+
+          {matchedUser ? (
+            ""
+          ) : (
+            <div className="flex items-center gap-4 mb-4">
+              <img
+                className="rounded-full w-20"
+                src="\public\assets\images\logo.png"
+                alt="MusicMatch Logo"
+              ></img>
+              <span className="text-3xl font-semibold">
+                Finde dein MusicMatch!
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col items-center w-96 border-solid border-2 rounded-lg bg-mmOrange">

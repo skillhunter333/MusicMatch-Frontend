@@ -16,6 +16,7 @@ const Matching = () => {
     const [matches, setMatches] = useState(null)
     const [matchedUser, setMatchedUser] = useState(null)
     const [matchesIndex, setMatchesIndex] = useState(0)
+    const [dropDown, setDropDown] = useState(false)
 
 
     async function handleGetMatchBtn(){
@@ -81,9 +82,7 @@ const Matching = () => {
             </div>
        
             <div className="flex flex-col items-center w-96 border-solid border-2 rounded-lg bg-mmOrange">
-            {/* TOGGLE */}
-
-            
+                      
 
                 <div className={`flex w-full ${matchedUser?'':'hidden'}`}>
                  
@@ -122,14 +121,24 @@ const Matching = () => {
                         get match
                 </button>
 
-            {/* TOGGLE */}
             </div>
 
-              
-                        
+            {/* <button onClick={()=>setDropDown(true)} >dropdown</button>
+            {dropDown
+            ? (
+                <ul>
+                    <li>2 km</li>
+                    <li>5 km</li>
+                    <li>8 km</li>
+                    <li>10 km</li>
+                    <li>15 km</li>
+                    <li>25 km</li>
+                </ul>
+            )
+            : null
+        } */}
+           
         </div>
-
-
 
     </div>
 

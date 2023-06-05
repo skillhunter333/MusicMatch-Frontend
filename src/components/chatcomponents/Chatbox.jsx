@@ -125,13 +125,13 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
   };
 
   return (
-    <div className="bg-black w-3/4 h-full rounded-r-lg">
+    <div className="bg-mmGrey w-3/4 h-full rounded-r-lg">
       {selectedChat ? (
-        <div className="w-full h-screen">
-          <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-between items-center border-black">
+        <div className="w-full h-screen mt-6 pr-6">
+          <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-between items-center border-black text-mmGrey">
             {messages &&
               (!selectedChat.isGroupChat ? (
-                <>{getSender(user, selectedChat.users)} </>
+                <>{getSender(user._id, selectedChat.users)} </>
               ) : (
                 <>
                   {selectedChat.chatName}

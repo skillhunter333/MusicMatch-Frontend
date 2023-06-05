@@ -36,7 +36,7 @@ const MyChats = ({ fetchAgain }) => {
   }, [fetchAgain]);
 
   return (
-    <div className=" p-3 items-center flex flex-col bg-black  w-1/3 rounded-l-lg border-black ">
+    <div className=" p-3 items-center flex flex-col bg-mmGrey  w-1/3 rounded-l-lg border-black ">
       <div className="pb-3 pl-3 font-bold text-2xl flex w-full justify-between items-center text-white">
         Meine Chats
         <SearchUserModal>

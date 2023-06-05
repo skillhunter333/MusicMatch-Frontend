@@ -9,16 +9,14 @@ const Chat = () => {
 
   return (
     <>
-      <div className="bg-red-400">
-        {/* render mychats and the box which will render the actual chat */}
+      {/* render mychats and the box which will render the actual chat */}
 
-        <div>
-          <div className="flex justify-between w-full h-[95vh] p-10 bg-slate-300 mt-12">
-            {user && <MyChats fetchAgain={fetchAgain} />}
-            {user && (
-              <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
-            )}
-          </div>
+      <div>
+        <div className="flex justify-between w-full h-[95vh] p-10 bg-slate-600 mt-12">
+          {user && <MyChats fetchAgain={fetchAgain} />}
+          {user && (
+            <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+          )}
         </div>
       </div>
     </>

@@ -7,7 +7,8 @@ export default  {
     extend: {colors: {
       'mmOrange': '#FEB117', 
       'mmYellow': '#FEE305',
-      'mmBlue': '#3D2E55'
+      'mmBlue': '#3D2E55' ,
+      'mmGrey': '#1e293b'
     }},
   },
   plugins: [require('flowbite/plugin')],

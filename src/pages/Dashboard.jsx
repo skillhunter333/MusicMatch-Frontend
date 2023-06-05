@@ -1,19 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-import { HiChatAlt2, HiMap, HiOutlineStar, HiSparkles } from 'react-icons/hi';
+import { useNavigate } from "react-router-dom";
+import { HiChatAlt2, HiMap, HiOutlineStar, HiSparkles } from "react-icons/hi";
 import { HiUserCircle } from "react-icons/hi2";
 import { useAuthContext } from "../context/AuthContext";
-import { SlRocket } from "react-icons/sl"
-
+import { SlRocket } from "react-icons/sl";
 
 const Dashboard = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const { user } = useAuthContext();
+  const { user } = useAuthContext();
 
   return (
-
-
     <div className="bg-slate-800 h-full">
+
 
         <div className="flex flex-col h-full justify-center items-center mx-2">
 
@@ -90,11 +88,9 @@ const { user } = useAuthContext();
             </div>
 
         </div>
-
+      </div>
     </div>
   );
 };
 
 export default Dashboard;
-
-

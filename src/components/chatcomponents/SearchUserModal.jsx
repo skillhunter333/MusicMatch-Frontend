@@ -8,14 +8,13 @@ import UserListItem from "./UserListItem";
 // import { MdClose } from "react-icons/md";
 
 const GroupChatModal = ({ children }) => {
-  const [groupChatName, setGroupChatName] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { chats, setChats } = ChatState();
+  const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
   const { user } = useAuthContext();
 
   const handleOpen = () => {
@@ -47,7 +46,7 @@ const GroupChatModal = ({ children }) => {
 
   const accessChat = async (userId) => {
     try {
-      setLoadingChat(true);
+      setLoading(true);
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/chat`,
         { userId },
@@ -56,7 +55,7 @@ const GroupChatModal = ({ children }) => {
 
       if (!chats.find((c) => c._id === data._id)) setChats([...chats, data]);
       setSelectedChat(data);
-      setLoadingChat(false);
+      setLoading(false);
     } catch (error) {
       toastError(error.message || "Error fetching the chat");
     }

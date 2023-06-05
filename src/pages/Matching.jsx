@@ -25,6 +25,7 @@ const Matching = () => {
                     withCredentials: true,
                 }
             )
+        console.log(data)
         setMatches(data)
         const user = await getUserById(data[matchesIndex].user._id)
         setMatchedUser(user)
@@ -69,35 +70,43 @@ const Matching = () => {
   
     return (
     
-    <div className="bg-mmOrange h-full">
+    <div className={`${matchedUser?'bg-slate-800':'bg-mmOrange'} h-full`}>
       
-        <div className="flex flex-col items-center  ">
+        <div className="flex flex-col items-center  h-full justify-center">
 
-            <h1 className='text-3xl font-semibold mb-8' >Finde dein MusicMatch!</h1>
+            
             <div>
                 {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
-                <h1 className='text-3xl font-semibold mb-8' >Finde dein MusicMatch!</h1>
+                <h1 className='text-3xl font-semibold mb-8'>{matchedUser?'':'Finde dein MusicMatch!'}</h1>
             </div>
        
-            <div className="flex flex-col items-center w-6/12 border-solid border-2 rounded-lg  ">
+            <div className="flex flex-col items-center w-96 border-solid border-2 rounded-lg bg-mmOrange">
+            {/* TOGGLE */}
 
-                <div className="flex h-96 w-full ">
+            
+
+                <div className={`flex w-full ${matchedUser?'':'hidden'}`}>
                  
-                    <div className="flex flex-col items-center w-full text-white text-1xl ">
-                        {/* <h2 className="text-2xl">{matches? `Match(${matchesIndex +1 }/${matches.length})`: ''}</h2> */}
+                    <div className="flex flex-col items-center w-full text-white text-1xl mx-5 ">
+                        
                         <div className="flex items-center justify-around ">
                             <BiChevronLeft className={`text-4xl  ${matchesIndex? 'cursor-pointer' : 'text-mmOrange '}`} onClick={handlePrevBtn}/>
                             <img className={`w-2/5 rounded-full mt-6 mb-4 ${matchedUser?'':'hidden'}`} src={matchedUser && matchedUser.imgUrl} alt="user img"></img>
                             <BiChevronRight className={`text-4xl  ${matchedUser && matchesIndex < matches.length -1 ?'cursor-pointer':'text-mmOrange '}`} onClick={handleNextBtn}/>
                         </div>
-                        <p className="text-2xl  dark:text-white">{matchedUser && matchedUser.firstName}</p>
+                        <div>
+                            <span className="text-2xl  dark:text-white">{matchedUser && matchedUser.firstName} </span>
+                            <span className="text-2xl">{matches? `(${matchesIndex +1 }/${matches.length})`: ''}</span> 
+                        </div>
                         {matchedUser ? <div><span className="bg-mmOrange rounded">{matches[matchesIndex].user.matches.length}</span>  <span>Gemeinsamkeit(en)</span></div>  : '' }
+
+                        <p className="border-y py-2 mt-3 ">{matchedUser && matchedUser.userDescription}</p>
                     </div>
 
                 </div>
 
-
-                <div className=" flex h-12 w-full text-white text-1xl " >
+              
+                <div className={` flex h-12 w-full text-white text-1xl ${matchedUser?'':'hidden'}`} >
                     <button onClick={handleChatBtn} className="w-4/12  text-white text-1xl  ">
                         {matchedUser && 'Chat'} 
                     </button>
@@ -109,16 +118,18 @@ const Matching = () => {
                     </button>
                 </div>
 
-                <button onClick={handleGetMatchBtn} className="w-full h-12 text-white text-1xl bg-slate-800 rounded-b-lg" >
+                <button onClick={handleGetMatchBtn} className={`w-full h-12 text-white text-1xl bg-black ${matchedUser?'rounded-b-lg':'rounded-lg'}`} >
                         get match
                 </button>
 
-
+            {/* TOGGLE */}
             </div>
 
               
                         
         </div>
+
+
 
     </div>
 

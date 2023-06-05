@@ -9,11 +9,12 @@ const Home = () => {
     navigate("/login");
   }
 
+
+
   return (
     <>
 
     <div className="bg-mmOrange h-screen">
-      
     
       {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
       
@@ -33,8 +34,6 @@ const Home = () => {
                         Learn more
                     </button>  
                 </div>
-
-    
 
             </div>
           </div>

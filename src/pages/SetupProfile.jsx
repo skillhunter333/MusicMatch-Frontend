@@ -97,7 +97,6 @@ const SetupProfile = () => {
             type="text"
             placeholder="E-mail"
             disabled="true"
-            disable ="true"
             defaultValue={user && user.email}
             onChange={handleChange}
           ></input>

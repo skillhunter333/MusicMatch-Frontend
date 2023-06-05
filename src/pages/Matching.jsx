@@ -12,10 +12,10 @@ import { ChatState } from "../context/ChatProvider";
 const Matching = () => {
   const navigate = useNavigate();
 
-    const [matches, setMatches] = useState(null)
-    const [matchedUser, setMatchedUser] = useState(null)
-    const [matchesIndex, setMatchesIndex] = useState(0)
-    const [dropDown, setDropDown] = useState(false)
+  const [matches, setMatches] = useState(null);
+  const [matchedUser, setMatchedUser] = useState(null);
+  const [matchesIndex, setMatchesIndex] = useState(0);
+  const [dropDown, setDropDown] = useState(false);
 
   const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
   const [loading, setLoading] = useState(false);
@@ -88,43 +88,60 @@ const Matching = () => {
     navigate(`/auth/profile/${matchedUser._id}`);
   }
 
-    function handleSaveBtn(){
-        console.log('handleSaveBtn has been clicked (hard)')
-    }    
-  
-    return (
-    
-    <div className={`${matchedUser?'bg-slate-800':'bg-mmOrange'} h-full`}>
-      
-        <div className="flex flex-col items-center  h-full justify-center">
+  function handleSaveBtn() {
+    console.log("handleSaveBtn has been clicked (hard)");
+  }
 
-            
-            <div>
-                {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
-                <h1 className='text-3xl font-semibold mb-8'>{matchedUser?'':'Finde dein MusicMatch!'}</h1>
-            </div>
-       
-            <div className="flex flex-col items-center w-96 border-solid border-2 rounded-lg bg-mmOrange">
-                      
+  return (
+    <div className={`${matchedUser ? "bg-slate-800" : "bg-mmOrange"} h-full`}>
+      <div className="flex flex-col items-center  h-full justify-center">
+        <div>
+          {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
+          <h1 className="text-3xl font-semibold mb-8">
+            {matchedUser ? "" : "Finde dein MusicMatch!"}
+          </h1>
+        </div>
 
-                <div className={`flex w-full ${matchedUser?'':'hidden'}`}>
-                 
-                    <div className="flex flex-col items-center w-full text-white text-1xl mx-5 ">
-                        
-                        <div className="flex items-center justify-around ">
-                            <BiChevronLeft className={`text-4xl  ${matchesIndex? 'cursor-pointer' : 'text-mmOrange '}`} onClick={handlePrevBtn}/>
-                            <img className={`w-2/5 rounded-full mt-6 mb-4 ${matchedUser?'':'hidden'}`} src={matchedUser && matchedUser.imgUrl} alt="user img"></img>
-                            <BiChevronRight className={`text-4xl  ${matchedUser && matchesIndex < matches.length -1 ?'cursor-pointer':'text-mmOrange '}`} onClick={handleNextBtn}/>
-                        </div>
-                        <div>
-                            <span className="text-2xl  dark:text-white">{matchedUser && matchedUser.firstName} </span>
-                            <span className="text-2xl">{matches? `(${matchesIndex +1 }/${matches.length})`: ''}</span> 
-                        </div>
-                        {matchedUser ? <div><span className="bg-mmOrange rounded">{matches[matchesIndex].user.matches.length}</span>  <span>Gemeinsamkeit(en)</span></div>  : '' }
-
-                        <p className="border-y py-2 mt-3 ">{matchedUser && matchedUser.userDescription}</p>
-                    </div>
-
+        <div className="flex flex-col items-center w-96 border-solid border-2 rounded-lg bg-mmOrange">
+          <div className={`flex w-full ${matchedUser ? "" : "hidden"}`}>
+            <div className="flex flex-col items-center w-full text-white text-1xl mx-5 ">
+              <div className="flex items-center justify-around ">
+                <BiChevronLeft
+                  className={`text-4xl  ${
+                    matchesIndex ? "cursor-pointer" : "text-mmOrange "
+                  }`}
+                  onClick={handlePrevBtn}
+                />
+                <img
+                  className={`w-2/5 rounded-full mt-6 mb-4 ${
+                    matchedUser ? "" : "hidden"
+                  }`}
+                  src={matchedUser && matchedUser.imgUrl}
+                  alt="user img"
+                ></img>
+                <BiChevronRight
+                  className={`text-4xl  ${
+                    matchedUser && matchesIndex < matches.length - 1
+                      ? "cursor-pointer"
+                      : "text-mmOrange "
+                  }`}
+                  onClick={handleNextBtn}
+                />
+              </div>
+              <div>
+                <span className="text-2xl  dark:text-white">
+                  {matchedUser && matchedUser.firstName}{" "}
+                </span>
+                <span className="text-2xl">
+                  {matches ? `(${matchesIndex + 1}/${matches.length})` : ""}
+                </span>
+              </div>
+              {matchedUser ? (
+                <div>
+                  <span className="bg-mmOrange rounded">
+                    {matches[matchesIndex].user.matches.length}
+                  </span>{" "}
+                  <span>Gemeinsamkeit(en)</span>
                 </div>
               ) : (
                 ""
@@ -169,26 +186,8 @@ const Matching = () => {
           >
             get match
           </button>
-
-            </div>
-
-            {/* <button onClick={()=>setDropDown(true)} >dropdown</button>
-            {dropDown
-            ? (
-                <ul>
-                    <li>2 km</li>
-                    <li>5 km</li>
-                    <li>8 km</li>
-                    <li>10 km</li>
-                    <li>15 km</li>
-                    <li>25 km</li>
-                </ul>
-            )
-            : null
-        } */}
-           
         </div>
-
+      </div>
     </div>
   );
 };

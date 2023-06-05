@@ -216,10 +216,10 @@ const ProfilePage = () => {
               {/*ROW with first and lastname*/}
               {user && (
                 <div className="flex  gap-4">
-                  <h2 class="text-4xl font-bold dark:text-white">
+                  <h2 class="text-4xl  dark:text-white">
                     {user.firstName ? user.firstName : "Vorname"}
                   </h2>
-                  <h2 class="text-4xl font-bold dark:text-white">
+                  <h2 class="text-4xl  dark:text-white">
                     {user.lastName ? user.lastName : "Nachname"}
                   </h2>
                 </div>

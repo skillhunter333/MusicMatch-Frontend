@@ -195,133 +195,135 @@ const ProfilePage = () => {
   //
   return (
     //main container
-    <div className="flex gap-4 flex-col mt-20 ml-8 mr-8">
-      {/*ROW(1) row with img, name and description*/}
-      <div className="flex  h-48   ">
-        {/*COL column with image*/}
+    <div className="bg-slate-50">
+        <div className="flex  gap-4 flex-col pt-20 ml-8 mr-8">
+          {/*ROW(1) row with img, name and description*/}
+          <div className="flex  h-48   ">
+            {/*COL column with image*/}
 
-        <img
-          className="w-48"
-          // className="rounded-full"
-          src={user && user.imgUrl}
-          alt="Profile Picture"
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        />
-
-        {/*COL column with name and description*/}
-        <div className="flex flex-col w-11/12 ml-4 gap-4 p-2  ">
-          {/*ROW with first and lastname*/}
-          {user && (
-            <div className="flex  gap-4">
-              <h2 class="text-4xl font-bold dark:text-white">
-                {user.firstName ? user.firstName : "Vorname"}
-              </h2>
-              <h2 class="text-4xl font-bold dark:text-white">
-                {user.lastName ? user.lastName : "Nachname"}
-              </h2>
-            </div>
-          )}
-          <div className="w-11/12  ">
-            <p>{user && user.userDescription}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* ROW with interests */}
-
-      <div className="flex flex-col gap-2 bg-slate-100 p-4 ">
-        <h2 className="font-bold text-mmOrange">Interessen</h2>
-        {/* ROW  for single interests*/}
-        {user &&
-          user.interests.map((interest, index) => (
-            <div key={index} className="bg-white rounded">
-              <div className="flex flex-wrap p-2 ">
-                <Link
-                  to="/auth/skills"
-                  onClick={() => {}}
-                  className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
-                >
-                  {interest.name}
-                </Link>
-                <button
-                  charType="interest"
-                  onClick={handleDescClick}
-                  className={`pl-2 mt-2 text-left ${
-                    interest.description === "" ? "text-slate-400" : ""
-                  } `}
-                >
-                  {interest.description === ""
-                    ? "Beschreibung einfügen..."
-                    : interest.description}
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
-
-      {/* ROW with skills */}
-      <div className="flex flex-col gap-2 bg-slate-100 p-4 mb-8">
-        <h2 className="font-bold text-mmOrange">Fähigkeiten</h2>
-        {/* ROW  for single interests*/}
-        {user &&
-          user.skills.map((skill, index) => (
-            <div key={index} className="bg-white rounded">
-              <div className="flex flex-wrap p-2 ">
-                <Link
-                  to="/auth/skills"
-                  onClick={handleInterestClick}
-                  className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
-                >
-                  {skill.name}
-                </Link>
-                <button
-                  charType="skill"
-                  onClick={handleDescClick}
-                  className={`pl-2 mt-2 text-left ${
-                    skill.description === "" ? "text-slate-400" : ""
-                  } `}
-                >
-                  {skill.description === ""
-                    ? "Beschreibung einfügen..."
-                    : skill.description}
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
-
-      <Modal onClose={handleCloseModal} show={openModal ? true : false}>
-        <Modal.Header>Beschreibung anpassen</Modal.Header>
-        <Modal.Body>
-          <div className="space-y-6">
-            <TextInput
-              defaultValue={charDesc}
-              placeholder="beschreibe dein Interesse/Skill"
+            <img
+              className="w-48 rounded-full"
+              // className="rounded-full"
+              src={user && user.imgUrl}
+              alt="Profile Picture"
+              onClick={() => {
+                setIsOpen(true);
+              }}
             />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleSafeDesc}>Änderung speichern</Button>
-          <Button color="gray" onClick={handleCloseModal}>
-            <p>Abbrechen</p>
-          </Button>
-        </Modal.Footer>
 
-        {/* Profile Picture edit modal: */}
-      </Modal>
-      <Modal onClose={handleCloseModalProfilePic} show={isOpen ? true : false}>
-        <Modal.Header>Profilbild bearbeiten</Modal.Header>
-        <Modal.Body>
-          <div className="space-y-6"></div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button color="gray" onClick={handleCloseModalProfilePic}>
-            <p>Abbrechen</p>
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            {/*COL column with name and description*/}
+            <div className="flex  flex-col w-11/12 ml-4 gap-4 p-2  ">
+              {/*ROW with first and lastname*/}
+              {user && (
+                <div className="flex  gap-4">
+                  <h2 class="text-4xl  dark:text-white">
+                    {user.firstName ? user.firstName : "Vorname"}
+                  </h2>
+                  <h2 class="text-4xl  dark:text-white">
+                    {user.lastName ? user.lastName : "Nachname"}
+                  </h2>
+                </div>
+              )}
+              <div className="w-11/12  ">
+                <p>{user && user.userDescription}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ROW with interests */}
+
+          <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded ">
+            <h2 className="font-bold text-mmGrey">Interessen</h2>
+            {/* ROW  for single interests*/}
+            {user &&
+              user.interests.map((interest, index) => (
+                <div key={index} className="bg-slate-100 rounded">
+                  <div className="flex flex-wrap p-2 ">
+                    <Link
+                      to="/auth/skills"
+                      onClick={() => {}}
+                      className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
+                    >
+                      {interest.name}
+                    </Link>
+                    <button
+                      charType="interest"
+                      onClick={handleDescClick}
+                      className={`pl-2 mt-2 text-left ${
+                        interest.description === "" ? "text-slate-400" : ""
+                      } `}
+                    >
+                      {interest.description === ""
+                        ? "Beschreibung einfügen..."
+                        : interest.description}
+                    </button>
+                  </div>
+                </div>
+              ))}
+          </div>
+
+          {/* ROW with skills */}
+          <div className="flex flex-col gap-2 bg-slate-200 p-4 mb-8 rounded">
+            <h2 className="font-bold text-mmGrey">Fähigkeiten</h2>
+            {/* ROW  for single interests*/}
+            {user &&
+              user.skills.map((skill, index) => (
+                <div key={index} className="bg-slate-100 rounded">
+                  <div className="flex flex-wrap p-2 ">
+                    <Link
+                      to="/auth/skills"
+                      onClick={handleInterestClick}
+                      className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
+                    >
+                      {skill.name}
+                    </Link>
+                    <button
+                      charType="skill"
+                      onClick={handleDescClick}
+                      className={`pl-2 mt-2 text-left ${
+                        skill.description === "" ? "text-slate-400" : ""
+                      } `}
+                    >
+                      {skill.description === ""
+                        ? "Beschreibung einfügen..."
+                        : skill.description}
+                    </button>
+                  </div>
+                </div>
+              ))}
+          </div>
+
+          <Modal onClose={handleCloseModal} show={openModal ? true : false}>
+            <Modal.Header>Beschreibung anpassen</Modal.Header>
+            <Modal.Body>
+              <div className="space-y-6">
+                <TextInput
+                  defaultValue={charDesc}
+                  placeholder="beschreibe dein Interesse/Skill"
+                />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={handleSafeDesc}>Änderung speichern</Button>
+              <Button color="gray" onClick={handleCloseModal}>
+                <p>Abbrechen</p>
+              </Button>
+            </Modal.Footer>
+
+            {/* Profile Picture edit modal: */}
+          </Modal>
+          <Modal onClose={handleCloseModalProfilePic} show={isOpen ? true : false}>
+            <Modal.Header>Profilbild bearbeiten</Modal.Header>
+            <Modal.Body>
+              <div className="space-y-6"></div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button color="gray" onClick={handleCloseModalProfilePic}>
+                <p>Abbrechen</p>
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
     </div>
   );
 };

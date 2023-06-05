@@ -53,8 +53,9 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
   };
 
   const sendMessage = async (event) => {
+    event.preventDefault();
+    if (!newMessage) return;
     if (event.type === "submit" && newMessage) {
-      event.preventDefault();
       socket.emit("stop typing", selectedChat._id);
       try {
         setNewMessage("");
@@ -127,11 +128,25 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
   return (
     <div className="bg-mmGrey w-3/4 h-full rounded-r-lg">
       {selectedChat ? (
-        <div className="w-full h-screen mt-6 pr-6">
+        // <div className="w-full h-screen mt-6 pr-6">
+        <div className="w-full h-full overflow-hidden pb-6 pt-16 px-4">
+          {/* <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-end items-center border-black text-mmGrey"> */}
+          <div className="text-4xl md:text-5xl -mt-4 pb-6 px-2 w-full flex justify-end items-center h-0 border-black text-mmGrey">
+            {messages && selectedChat.isGroupChat && (
+              <UpdateGroupChatModal
+                fetchMessages={fetchMessages}
+                fetchAgain={fetchAgain}
+                setFetchAgain={setFetchAgain}
+              />
+            )}
+          </div>
+          {/* <div className="w-full h-full overflow-hidden pb-6 pt-16 px-4">
           <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-between items-center border-black text-mmGrey">
             {messages &&
               (!selectedChat.isGroupChat ? (
-                <>{getSender(user._id, selectedChat.users)} </>
+                <p className="text-white">
+                  {getSender(user._id, selectedChat.users)}{" "}
+                </p>
               ) : (
                 <>
                   {selectedChat.chatName}
@@ -143,90 +158,92 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                   />
                 </>
               ))}
-          </div>
+          </div> */}
 
           {/* Box with chat content:       */}
-
-          <div className="flex flex-col justify-end p-9 bg-zinc-300 w-full h-4/6 rounded-t-lg overflow-y-auto">
-            {loading ? (
-              <div className="flex justify-center items-center h-full">
-                <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"></div>
-              </div>
-            ) : (
-              <div className="messages overflow-y-hidden h-screen">
-                <ScrollableChat messages={messages} />
-              </div>
-            )}
-          </div>
-
-          {/*input form for chat messages from flowbite */}
-
-          <form onSubmit={sendMessage} className="flex flex-col w-full ">
-            <div className="flex items-center px-3 py-2 rounded-b-lg bg-gray-50 dark:bg-gray-700">
-              <button
-                type="button"
-                className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="sr-only">Upload image</span>
-              </button>
-              <button
-                type="button"
-                className="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="sr-only">Add emoji</span>
-              </button>
-              <textarea
-                id="chat"
-                rows="1"
-                className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Deine Nachricht..."
-                value={newMessage}
-                onChange={typingHandler}
-                onKeyDown={handleKeyDown}
-              ></textarea>
-              <button
-                type="submit"
-                className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6 rotate-90"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                </svg>
-                <span className="sr-only">Send message</span>
-              </button>
+          <div className="w-full h-full flex flex-col items-center justify-center">
+            <div className="flex flex-col justify-end p-9 bg-zinc-300 w-full h-[90%] rounded-t-lg overflow-y-auto">
+              {loading ? (
+                <div className="flex justify-center items-center h-full">
+                  <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"></div>
+                </div>
+              ) : (
+                // <div className="messages overflow-y-hidden h-screen">
+                <div className="overflow-y-hidden h-full">
+                  <ScrollableChat messages={messages} />
+                </div>
+              )}
             </div>
-          </form>
+
+            {/*input form for chat messages from flowbite */}
+
+            <form onSubmit={sendMessage} className="flex flex-col w-full ">
+              <div className="flex items-center px-3 py-2 rounded-b-lg bg-gray-50 dark:bg-red-700">
+                <button
+                  type="button"
+                  className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="sr-only">Upload image</span>
+                </button>
+                <button
+                  type="button"
+                  className="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="sr-only">Add emoji</span>
+                </button>
+                <textarea
+                  id="chat"
+                  rows="1"
+                  className="block resize-none mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Deine Nachricht..."
+                  value={newMessage}
+                  onChange={typingHandler}
+                  onKeyDown={handleKeyDown}
+                ></textarea>
+                <button
+                  type="submit"
+                  className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-6 h-6 rotate-90"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                  </svg>
+                  <span className="sr-only">Send message</span>
+                </button>
+              </div>
+            </form>
+          </div>
 
           {/*  ////////////////  */}
         </div>

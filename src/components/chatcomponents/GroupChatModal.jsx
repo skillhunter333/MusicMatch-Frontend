@@ -71,6 +71,15 @@ const GroupChatModal = ({ children }) => {
     }
   };
 
+  const handleGroup = (userToAdd) => {
+    if (selectedUsers.includes(userToAdd)) {
+      toastError("Nutzer bereits hinzugefügt");
+      return;
+    }
+
+    setSelectedUsers([...selectedUsers, userToAdd]);
+  };
+
   return (
     <>
       <span onClick={handleOpen}>{children}</span>

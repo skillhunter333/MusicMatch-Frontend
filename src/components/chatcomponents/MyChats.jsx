@@ -66,7 +66,7 @@ const MyChats = ({ fetchAgain }) => {
               >
                 <span className="font-bold">
                   {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
+                    ? getSender(userId, chat.users)
                     : chat.chatName}
                 </span>
                 {chat.latestMessage && (

@@ -26,9 +26,8 @@ const Dashboard = () => {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">Chat</div>
               <p className="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                Sprich mit deinen Matches und organisiere Treffen und Events via
+                Gruppenchats...
               </p>
             </div>
           </div>
@@ -45,9 +44,9 @@ const Dashboard = () => {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">Map</div>
               <p className="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                Welche Musiker sind in deiner Nähe? Schau dir an wer in deiner
+                Nähe wohnt und villeicht offen für gemeinsame JamSessions oder
+                anderen Aktivitäten ist.
               </p>
             </div>
           </div>
@@ -64,9 +63,9 @@ const Dashboard = () => {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">MusicMatch</div>
               <p className="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                Unser Algorithmus schlägt dir Personen zum gemeinsamen
+                Musizieren, voneinander Lernen und allgemeinem Austausch vor.
+                Einfach Suchradius anpassen und Kontakt aufnehmen!
               </p>
             </div>
           </div>
@@ -83,9 +82,9 @@ const Dashboard = () => {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">Profil</div>
               <p className="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                Bearbeite dein Profil. Füge eine kleine Beschreibung über dich
+                selbst, die Instrumente die du spielst und zu deinen Interessen
+                hinzu.
               </p>
             </div>
           </div>
@@ -102,9 +101,9 @@ const Dashboard = () => {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">Interessen / Skills</div>
               <p className="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                Passe jederzeit deine Interessen an. Willst du ein neues
+                Instrument lernen? Basierend auf deinen Angaben werden dir dann
+                auch neue Leute vorgeschlagen.
               </p>
             </div>
           </div>
@@ -121,9 +120,8 @@ const Dashboard = () => {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">Einstellungen</div>
               <p className="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                Bearbeite deine Profilangaben, ändere deinen Wohnort und passe
+                den Suchradius fürs Matching an.
               </p>
             </div>
           </div>

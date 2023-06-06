@@ -8,6 +8,7 @@ import { Card, Dropdown } from "flowbite-react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { toastError, toastSuccess } from "../lib/toastify";
 import { ChatState } from "../context/ChatProvider";
+import { Divider, Placeholder } from 'rsuite';
 
 const Matching = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Matching = () => {
   const [matchedUser, setMatchedUser] = useState(null);
   const [matchesIndex, setMatchesIndex] = useState(0);
   const [dropDown, setDropDown] = useState(false);
+  const [bounce, setBounce] = useState(false)
 
   const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
   const [loading, setLoading] = useState(false);
@@ -31,11 +33,24 @@ const Matching = () => {
       console.log(data);
       setMatches(data);
       const user = await getUserById(data[matchesIndex].user._id);
-      setMatchedUser(user);
+      setBounce(true)
+      
+      const timeOut = setTimeout(stopBounce,3500)
+
+      function stopBounce(){    
+          setBounce(false)
+          setMatchedUser(user)
+      }
+      
     } catch (error) {
       console.log(error);
     }
   }
+
+
+    
+    
+  
 
   async function handleNextBtn() {
     if (matchesIndex < matches.length - 1) {
@@ -102,12 +117,8 @@ const Matching = () => {
           {matchedUser ? (
             ""
           ) : (
-            <div className="flex items-center gap-4 mb-4">
-              <img
-                className="rounded-full w-20"
-                src="\public\assets\images\logo.png"
-                alt="MusicMatch Logo"
-              ></img>
+            <div className="flex items-center gap-4 mb-6">
+            
               <span className="text-3xl font-semibold">
                 Finde dein MusicMatch!
               </span>
@@ -115,10 +126,10 @@ const Matching = () => {
           )}
         </div>
 
-        <div className="flex flex-col items-center w-96 border-solid border-2 rounded-lg bg-mmOrange">
+        <div className={`${ bounce ? 'animate-bounce' : '' } shadow-2xl flex flex-col items-center w-96  border-solid border-2 rounded-lg bg-mmOrange`}>
           <div className={`flex w-full ${matchedUser ? "" : "hidden"}`}>
             <div className="flex flex-col items-center w-full text-white text-1xl mx-5 ">
-              <div className="flex items-center justify-around ">
+              <div className="flex items-center justify-around  ">
                 <BiChevronLeft
                   className={`text-4xl  ${
                     matchesIndex ? "cursor-pointer" : "text-mmOrange "
@@ -126,7 +137,7 @@ const Matching = () => {
                   onClick={handlePrevBtn}
                 />
                 <img
-                  className={`w-2/5 rounded-full mt-6 mb-4 ${
+                  className={`w-36 h-36 rounded-full  mt-6 mb-4 ${
                     matchedUser ? "" : "hidden"
                   }`}
                   src={matchedUser && matchedUser.imgUrl}
@@ -159,10 +170,14 @@ const Matching = () => {
               ) : (
                 ""
               )}
-
-              <p className="border-y py-2 mt-3 ">
-                {matchedUser && matchedUser.userDescription}
+              <div className="mt-2 border-y border-white w-full">
+              <p className=" py-4 h-52 ">
+                {matchedUser
+                ?matchedUser.userDescription!== null && matchedUser.userDescription.length>300 ? matchedUser.userDescription.slice(0,300)+' ...':''
+                :''
+              }
               </p>
+              </div>
             </div>
           </div>
 
@@ -203,6 +218,6 @@ const Matching = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Matching;

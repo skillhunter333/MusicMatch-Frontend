@@ -2,6 +2,7 @@ import { Button } from "flowbite-react";
 import { useAuthContext } from "../context/AuthContext";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { Divider, Placeholder } from 'rsuite';
 
 const SetupProfile = () => {
   const { user, setUser } = useAuthContext();
@@ -81,6 +82,8 @@ const SetupProfile = () => {
               defaultValue={user && user.firstName}
               onChange={handleChange}
             ></input>
+
+
 
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"

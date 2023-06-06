@@ -84,11 +84,8 @@ const Map = () => {
 
   return (
     <div className="flex bg-mmOrange h-screen items-center  ">
-      <div className="mx-auto  h-4/5 w-4/5 bg-[url('src/images/hero.png')]">
+      <div className="drop-shadow-2xl mx-auto pt-10 h-4/5 w-4/5 ">
         {/* <div className="mt-20 ml-8 mr-8 bg-slate-400 h-6/12"> */}
-        <h1 className="text-3xl text-slate-800 mb-2">
-          Finde Musiker in deiner Umgegung...
-        </h1>
 
         <ReactMapGL
           {...viewPort}
@@ -134,7 +131,7 @@ const Map = () => {
             >
               <div className=" bg-mmOrange flex flex-col items-center">
                 <img
-                  className="p-2 rounded-full w-4/5"
+                  className="p-2 rounded-full w-28 h-28"
                   src={popUp && popUp.imgUrl}
                 ></img>
                 <div className="flex flex-col items-center  text-slate-50 bg-slate-800 w-full">

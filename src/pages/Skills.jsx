@@ -183,7 +183,7 @@ const Skills = () => {
   }
 
   return (
-    <div className="pt-20 px-8 h-screen bg-slate-50">
+    <div className="pt-20 px-20 h-screen bg-slate-50">
       <Button.Group className="mb-4">
         <Button
           onClick={handleInterestMode}

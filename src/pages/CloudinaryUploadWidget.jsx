@@ -95,7 +95,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
       },
       false
     );
-  }, [onUploadSuccess]);
+  }, []);
 
   return <></>;
 };

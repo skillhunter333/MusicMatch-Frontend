@@ -105,11 +105,11 @@ const Matching = () => {
     <div
       className={`${
         matchedUser
-          ? "bg-slate-800"
-          : "bg-mmOrange pr-96 bg-contain bg-[bottom_right_-12rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
-      } h-full`}
+          ? "bg-mmOrange  bg-contain bg-[bottom_right_-12rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
+          : "bg-mmOrange  bg-contain bg-[bottom_right_-12rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
+      } h-full pl-80`}
     >
-      <div className="flex flex-col items-center h-full justify-center">
+      <div className="flex flex-col items-left h-full justify-center">
         <div>
           {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
           <div className="text-3xl font-semibold mb-8"></div>
@@ -118,7 +118,7 @@ const Matching = () => {
             ""
           ) : (
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-3xl font-semibold">
+              <span className="text-3xl pl-6 font-semibold">
                 Finde dein MusicMatch!
               </span>
             </div>
@@ -128,14 +128,14 @@ const Matching = () => {
         <div
           className={`${
             bounce ? "animate-bounce" : ""
-          } shadow-2xl flex flex-col items-center w-96  border-solid border-2 rounded-lg bg-mmOrange`}
+          } drop-shadow-2xl border flex flex-col items-center w-96 border-black  rounded-lg bg-slate-100`}
         >
           <div className={`flex w-full ${matchedUser ? "" : "hidden"}`}>
-            <div className="flex flex-col items-center w-full text-white text-1xl mx-5 ">
+            <div className="flex flex-col items-center w-full text-black text-1xl mx-5 ">
               <div className="flex items-center justify-around  ">
                 <BiChevronLeft
                   className={`text-4xl  ${
-                    matchesIndex ? "cursor-pointer" : "text-mmOrange "
+                    matchesIndex ? "cursor-pointer" : "text-slate-100 "
                   }`}
                   onClick={handlePrevBtn}
                 />
@@ -150,13 +150,13 @@ const Matching = () => {
                   className={`text-4xl  ${
                     matchedUser && matchesIndex < matches.length - 1
                       ? "cursor-pointer"
-                      : "text-mmOrange "
+                      : "text-slate-100 "
                   }`}
                   onClick={handleNextBtn}
                 />
               </div>
               <div>
-                <span className="text-2xl  dark:text-white">
+                <span className="text-2xl ">
                   {matchedUser && matchedUser.firstName}{" "}
                 </span>
                 <span className="text-2xl">
@@ -165,15 +165,13 @@ const Matching = () => {
               </div>
               {matchedUser ? (
                 <div>
-                  <span className="bg-mmOrange rounded">
-                    {matches[matchesIndex].user.matches.length}
-                  </span>{" "}
+                  <span>{matches[matchesIndex].user.matches.length}</span>{" "}
                   <span>Gemeinsamkeit(en)</span>
                 </div>
               ) : (
                 ""
               )}
-              <div className="mt-2 border-y border-white w-full">
+              <div className="mt-2 border-y border-slate-300 w-full">
                 <p className=" py-4 h-52 ">
                   {matchedUser
                     ? matchedUser.userDescription !== null &&
@@ -187,25 +185,25 @@ const Matching = () => {
           </div>
 
           <div
-            className={` flex h-12 w-full text-white text-1xl ${
+            className={` flex h-12 w-full text-mmGrey text-1xl ${
               matchedUser ? "" : "hidden"
             }`}
           >
             <button
               onClick={handleChatBtn}
-              className="w-4/12  text-white text-1xl  "
+              className="w-4/12  text-black text-1xl  "
             >
               {matchedUser && "Chat"}
             </button>
             <button
               onClick={handleProfileBtn}
-              className="w-4/12  text-white text-1xl  "
+              className="w-4/12  text-black text-1xl  "
             >
               {matchedUser && "Profil"}
             </button>
             <button
               onClick={handleSaveBtn}
-              className="w-4/12  text-white text-1xl  "
+              className="w-4/12  text-black text-1xl  "
             >
               {matchedUser && "Speichern"}
             </button>

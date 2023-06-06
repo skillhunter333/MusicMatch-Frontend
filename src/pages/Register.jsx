@@ -38,7 +38,7 @@ const Register = () => {
     }
   };
 
-  if (isAuth) return <Navigate to="/" />;
+  if (isAuth) return <Navigate to="/auth/dashboard" />;
   else
     return (
       <main className="bg-slate-800 mt-[-1px] w-full h-screen flex items-center justify-center">

@@ -1,11 +1,11 @@
+import React, { useState, useEffect } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
 import getUserById from "../utils.js/getUserById";
 import axios from "axios";
 import { Modal, Button, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { Divider, Placeholder } from 'rsuite';
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 
 //Keine Self-Ratings in Datenbank? + evtl. Minitext zu Skills/Interests
 
@@ -14,7 +14,7 @@ const ProfilePage = () => {
   //user is based on params id
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [charDesc, setCharDesc] = useState("");
   const [charType, setCharType] = useState("");
   const [charName, setCharName] = useState("");
@@ -162,20 +162,20 @@ const ProfilePage = () => {
     }
   }
 
-  async function handleUpdateProfilePic(imgUrl) {
+  const handleUploadSuccess = async (secureUrl) => {
     try {
+      console.log(`this is the new imgUrl from the upload ${secureUrl}`);
       const { data } = await axios.put(
         `${import.meta.env.VITE_API_URL}/users/me`,
-        { imgUrl: imgUrl },
+        { imgUrl: secureUrl },
         { withCredentials: true }
       );
-      console.log(imgUrl);
       updateUser();
     } catch (error) {
       if (error.response.status !== 400) toastError(error.message);
       console.log(error);
     }
-  }
+  };
 
   function handleCloseModal() {
     try {
@@ -185,18 +185,22 @@ const ProfilePage = () => {
       console.log(error);
     }
   }
-  function handleCloseModalProfilePic() {
-    try {
-      setIsOpen(false);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // function handleCloseModalProfilePic() {
+  //   try {
+  //     setIsOpen(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   //
   return (
     //main container
     <div className="bg-slate-50">
+      <div className="flex  gap-4 flex-col pt-20 ml-8 mr-8">
+        {/*ROW(1) row with img, name and description*/}
+        <div className="flex  h-48   ">
+          {/*COL column with image*/}
       <div className="flex  gap-4 flex-col pt-20 ml-8 mr-8">
         {/*ROW(1) row with img, name and description*/}
         <div className="flex  h-48   ">
@@ -207,9 +211,10 @@ const ProfilePage = () => {
             // className="rounded-full"
             src={user && user.imgUrl}
             alt="Profile Picture"
-            onClick={() => {
-              setIsOpen(true);
-            }}
+            id="upload_widget"
+            // onClick={() => {
+            //   setIsOpen(true);
+            // }}
           />
 
           {/*COL column with name and description*/}
@@ -240,6 +245,41 @@ const ProfilePage = () => {
           >
             Interessen
           </Link>
+          {/* ROW  for single interests*/}
+          {user &&
+            user.interests.map((interest, index) => (
+              <div key={index} className="bg-slate-100 rounded">
+                <div className="flex flex-wrap p-2 ">
+                  <Link
+                    to="/auth/skills"
+                    onClick={() => {}}
+                    className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
+                  >
+                    {interest.name}
+                  </Link>
+                  <button
+                    charType="interest"
+                    onClick={handleDescClick}
+                    className={`pl-2 mt-2 text-left ${
+                      interest.description === "" ? "text-slate-400" : ""
+                    } `}
+                  >
+                    {interest.description === ""
+                      ? "Beschreibung einfügen..."
+                      : interest.description}
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
+        <div>
+          <CloudinaryUploadWidget onUploadSuccess={handleUploadSuccess} />
+        </div>
+
+        {/* ROW with interests */}
+
+        <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded ">
+          <h2 className="font-bold text-mmGrey">Interessen</h2>
           {/* ROW  for single interests*/}
           {user &&
             user.interests.map((interest, index) => (
@@ -315,10 +355,26 @@ const ProfilePage = () => {
               <p>Abbrechen</p>
             </Button>
           </Modal.Footer>
+        <Modal onClose={handleCloseModal} show={openModal ? true : false}>
+          <Modal.Header>Beschreibung anpassen</Modal.Header>
+          <Modal.Body>
+            <div className="space-y-6">
+              <TextInput
+                defaultValue={charDesc}
+                placeholder="beschreibe dein Interesse/Skill"
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={handleSafeDesc}>Änderung speichern</Button>
+            <Button color="gray" onClick={handleCloseModal}>
+              <p>Abbrechen</p>
+            </Button>
+          </Modal.Footer>
 
           {/* Profile Picture edit modal: */}
         </Modal>
-        <Modal
+        {/* <Modal
           onClose={handleCloseModalProfilePic}
           show={isOpen ? true : false}
         >
@@ -331,7 +387,7 @@ const ProfilePage = () => {
               <p>Abbrechen</p>
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
       </div>
     </div>
   );

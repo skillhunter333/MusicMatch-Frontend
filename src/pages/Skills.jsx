@@ -310,7 +310,7 @@ const Skills = () => {
                 onClick={
                   charMode === "interests" ? handleAddInterest : handleAddSkill
                 }
-                className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
+                className="bg-yellow-100 text-yellow-800 text-l mb-2 font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
               >
                 {c.de}
               </button>

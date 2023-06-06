@@ -6,26 +6,51 @@ import axios from "axios";
 const SetupProfile = () => {
   const { user, setUser } = useAuthContext();
 
+  const [{ firstName, lastName, address, postalCode, radius }, setForm] =
+    useState({
+      firstName: "",
+      lastName: "",
+      address: "",
+      postalCode: "",
+      radius: ""
+    });
+
+  useEffect(()=>{
+    setForm({
+      firstName: user.firstName && user.firstName,
+      lastName: user.lastName && user.lastName,
+      address: user.address && user.address,
+      postalCode: user.postalCode && user.postalCode,
+      radius: user.settings.radius && user.settings.radius
+    })
+  },[])
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   async function handleSubmit(event) {
-
-    console.log(event.target.parentElement.parentElement.children[1].firstChild.firstChild.value)
-
-
-
     try {
-      // const { data } = await axios.put(
-      //   `${import.meta.env.VITE_API_URL}/users/me/`,
-      //   {
-      //     skill: skill,
-      //   },
-      //   {
-      //     withCredentials: true,
-      //   }
-      // );
-
-      // console.log(data);
-      // updateUser();
+      console.log(
+        `firstName: (${firstName}) lastName: (${lastName}) address: (${address}) postalCode: (${postalCode}) radius: (${radius})`
+      );
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_API_URL}/users/me/`,
+        {
+          firstName,
+          lastName,
+          address,
+          postalCode,
+          settings: {
+            radius: radius*1000
+          } 
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(data);
     } catch (error) {
       if (error.response.status !== 400) toastError(error.message);
       console.log(error);
@@ -39,45 +64,59 @@ const SetupProfile = () => {
 
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">
+            {/* <input
+              type='text'
+              placeholder='E-mail'
+              name='email'
+              value={email}
+              onChange={handleChange}
+              className={inputStyles}
+            /> */}
+
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
               type="text"
               placeholder="Vorname"
+              name="fistName"
               defaultValue={user && user.firstName}
+              onChange={handleChange}
             ></input>
 
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
               type="text"
               placeholder="Nachname"
+              name="lastName"
               defaultValue={user && user.lastName}
+              onChange={handleChange}
             ></input>
           </div>
 
           <input
-            className="mt-4 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
+            className="mt-4 cursor-not-allowed appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             type="text"
-            placeholder="E-Mail"
+            placeholder="E-mail"
+            disabled={true}
             defaultValue={user && user.email}
+            onChange={handleChange}
           ></input>
 
           <input
             className="mt-4 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
             type="text"
             placeholder="Adresse"
+            name="adress"
             defaultValue={user && user.adress}
+            onChange={handleChange}
           ></input>
 
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
             type="text"
             placeholder="Postleitzahl"
+            name="postalCode"
             defaultValue={user && user.postalCode}
+            onChange={handleChange}
           ></input>
 
           <p className="mt-4 pl-1 block uppercase tracking-wide text-gray-700 text-xs font-bold">
@@ -85,10 +124,11 @@ const SetupProfile = () => {
           </p>
           <input
             className=" appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
             type="text"
             placeholder="Suchradius in km"
-            defaultValue={user && user.settings.radius/1000}
+            name="radius"
+            defaultValue={user && user.settings.radius / 1000}
+            onChange={handleChange}
           ></input>
         </div>
 

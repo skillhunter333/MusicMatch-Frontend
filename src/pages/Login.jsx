@@ -36,7 +36,7 @@ const Login = () => {
   if (isAuth) return <Navigate to={`/auth/dashboard`} />;
   else
     return (
-      <div className='mt-[-1px] w-full h-screen flex items-center justify-center'>
+      <div className='bg-mmGrey mt-[-1px] w-full h-screen flex items-center justify-center'>
         <form
           onSubmit={handleSubmit}
           className='flex flex-col items-center justify-between dark:bg-slate-600 pt-4 bg-slate-100 rounded overflow-hidden mx-auto my-0 w-2/3 sm:w-1/2 md:w-1/3 transition-all'
@@ -72,7 +72,7 @@ const Login = () => {
             </button>
             <button
               type='submit'
-              className='text-zinc-100 w-1/2 bg-gray-900 hover:bg-sky-500 p-1'
+              className='text-zinc-100 w-1/2 bg-green-400 hover:bg-sky-500 p-1'
             >
               Log in
             </button>

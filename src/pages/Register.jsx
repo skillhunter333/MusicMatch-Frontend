@@ -41,7 +41,7 @@ const Register = () => {
   if (isAuth) return <Navigate to="/" />;
   else
     return (
-      <main className="mt-[-1px] w-full h-screen flex items-center justify-center">
+      <main className="bg-slate-800 mt-[-1px] w-full h-screen flex items-center justify-center">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-between dark:bg-slate-600 pt-4 bg-slate-100 rounded overflow-hidden mx-auto my-0 w-2/3 sm:w-1/2 lg:w-1/3 transition-all"
@@ -99,7 +99,7 @@ const Register = () => {
             >
               Log in
             </button>
-            <button className="w-1/2 text-zinc-100 bg-gray-900 hover:bg-sky-500 dark:bg-gray-900 dark:hover:bg-sky-500 p-1">
+            <button className="w-1/2 text-black bg-mmOrange hover:bg-green-400 dark:bg-gray-900 dark:hover:bg-sky-500 p-1">
               Register
             </button>
           </div>

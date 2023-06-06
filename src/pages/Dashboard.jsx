@@ -114,7 +114,7 @@ const Dashboard = () => {
           >
             <img
               className="w-full h-80"
-              src="/public/assets/images/dashboard_settings.png"
+              src="/assets/images/dashboard_settings.png"
               alt="Music match logo"
             ></img>
             <div className="px-6 py-4">

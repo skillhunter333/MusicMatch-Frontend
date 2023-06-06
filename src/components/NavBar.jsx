@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react';
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { toastError, toastSuccess } from '../lib/toastify';
-import { useAuthContext } from '../context/AuthContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-
-
-
+import { useState, useEffect } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toastError, toastSuccess } from "../lib/toastify";
+import { useAuthContext } from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const ulStyles = {
   dropdown:
-    'fixed top-16 right-5 text-white dark:text-white bg-slate-200 dark:bg-slate-800 rounded text-base',
-  expanded: 'sm:flex justify-end items-center hidden sm:block mr-4',
+    "fixed top-16 right-5 text-white dark:text-white bg-slate-200 dark:bg-slate-800 rounded text-base",
+  expanded: "sm:flex justify-end items-center hidden sm:block mr-4",
 };
 
 // eslint-disable-next-line react/prop-types
 const MenuList = ({ dropdown = false }) => {
   const { isAuth, setIsAuth, setUser, user, setGotCookie } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -30,7 +28,7 @@ const MenuList = ({ dropdown = false }) => {
         setIsAuth(false);
         setUser(null);
         setGotCookie(false);
-        toastSuccess('Logged out');
+        toastSuccess("Logged out");
       }
     } catch (error) {
       toastError(error.message);
@@ -39,35 +37,38 @@ const MenuList = ({ dropdown = false }) => {
 
   return (
     <ul className={dropdown ? ulStyles.dropdown : ulStyles.expanded}>
-      <li className='text-zinc-100 mx-4 my-2'>
-        <FontAwesomeIcon icon={faBell} className="text-2xl m-1" />
-      </li>
-
-      <li className='text-zinc-100 mx-4 my-2'>
-        <Link to='/'>Home</Link>
-      </li>
       {!isAuth ? (
         <>
-          <li className='text-zinc-100 mx-4 my-2'>
-            <Link to='/login'>Login</Link>
+          <li className="text-zinc-100 mx-4 my-2">
+            <Link to="/login">Login</Link>
           </li>
-          <li className='text-zinc-100 mx-4 my-2'>
-            <Link to='/register'>Register</Link>
+          <li className="text-zinc-100 mx-4 my-2">
+            <Link to="/register">Register</Link>
           </li>
         </>
       ) : (
         <>
-          <li className='text-zinc-100 mx-4 my-2'>
-            <Link to='/auth/dashboard'>Dashboard</Link>
+          <li className="text-zinc-100 mx-4 my-2">
+            <FontAwesomeIcon icon={faBell} className="text-2xl m-1" />
           </li>
-          <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer' onClick={handleLogout}>
+          <li className="text-zinc-100 mx-4 my-2">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="text-zinc-100 mx-4 my-2">
+            <Link to="/auth/dashboard">Dashboard</Link>
+          </li>
+          <li
+            className="text-zinc-100 mx-4 my-2 hover:cursor-pointer"
+            onClick={handleLogout}
+          >
             Logout
           </li>
-          <li className='text-zinc-100 mx-4 my-2 hover:cursor-pointer'>
-          <img
-            className="rounded-full w-12 h-12 mb-4 mt-4 p-1"
-            src={user.imgUrl}
-            alt="Profile Avatar"
+          <li className="text-zinc-100 mx-4 my-2 hover:cursor-pointer">
+            <img
+              className="rounded-full w-12 h-12 mb-4 mt-4 p-1"
+              src={user.imgUrl}
+              alt="Profile Avatar"
+              onClick={() => navigate(`/auth/profile/${user._id}`)}
             />
           </li>
         </>
@@ -85,15 +86,15 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('click', () => {
+    window.addEventListener("click", () => {
       setToggleDropdown(false);
     });
   }, []);
 
   return (
-    <div className='fixed w-screen mt-[-1px] h-12 bg-gray-950 dark:bg-zinc-600 flex justify-end'>
+    <div className="fixed w-screen mt-[-1px] h-12 bg-gray-950 dark:bg-zinc-600 flex justify-end">
       <div
-        className='sm:hidden text-3xl flex items-center p-4'
+        className="sm:hidden text-3xl flex items-center p-4"
         onClick={showDropdown}
       >
         <RxHamburgerMenu />

@@ -40,8 +40,8 @@ const Map = () => {
       );
       //set offset to users postition
       data.forEach((u) => {
-        u.latOff = getRndInt(-5, 5);
-        u.lonOff = getRndInt(-5, 5);
+        u.latOff = getRndInt(-20, 20);
+        u.lonOff = getRndInt(-20, 20);
       });
       //filter authUser
       const filteredData = data.filter((u) => u._id != user._id);

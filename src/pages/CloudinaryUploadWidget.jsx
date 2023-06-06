@@ -71,8 +71,8 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
         croppingValidateDimensions: true,
         sources: ["local", "camera", "facebook", "instagram"],
         multiple: false,
-        showCompletedButton: true,
-        singleUploadAutoClose: true,
+        // showCompletedButton: true,
+        // singleUploadAutoClose: true,
         // clientAllowedFormats: ["images"],
         maxImageWidth: 720,
       },
@@ -91,6 +91,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
       "click",
       function () {
         myWidget.open();
+        console.log("opened the widget");
       },
       false
     );

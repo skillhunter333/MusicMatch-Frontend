@@ -38,32 +38,33 @@ const ProfilePage = () => {
     }
   }
 
-  async function handleSafeUserDesc(e){
+  async function handleSafeUserDesc(e) {
     try {
-      const newUserDesc = e.target.parentElement.parentElement.parentElement.children[1].firstChild.firstChild.firstChild.firstChild.value
-      console.log(`handleSafeUserDesc: (${newUserDesc})`)
-    
+      const newUserDesc =
+        e.target.parentElement.parentElement.parentElement.children[1]
+          .firstChild.firstChild.firstChild.firstChild.value;
+      console.log(`handleSafeUserDesc: (${newUserDesc})`);
+
       const { data } = await axios.put(
         `${import.meta.env.VITE_API_URL}/users/me/`,
         { userDescription: newUserDesc },
         { withCredentials: true }
       );
-      console.log(data)
+      console.log(data);
       updateUser();
+      setOpenDescModal(false);
     } catch (error) {
       if (error.response.status !== 400) toastError(error.message);
       console.log(error);
     }
+  }
 
-  };
-
-  function handleUserDescriptionClick(e){
+  function handleUserDescriptionClick(e) {
     try {
-      console.log(`handleUserDescriptionClick: (${e.target.textContent})`)
-      setOpenDescModal(true)
-    
+      console.log(`handleUserDescriptionClick: (${e.target.textContent})`);
+      setOpenDescModal(true);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -208,7 +209,7 @@ const ProfilePage = () => {
   function handleCloseModal() {
     try {
       setOpenModal(0);
-      setOpenDescModal(false)
+      setOpenDescModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -224,7 +225,6 @@ const ProfilePage = () => {
   return (
     //main container
     <main className="flex flex-col gap-4 bg-slate-50 p-5 pt-16">
-
       <div className="flex gap-4 flex-col ">
         {/*ROW(1) row with img, name and description*/}
         <div className="flex  h-48   ">
@@ -254,8 +254,21 @@ const ProfilePage = () => {
                 </h2>
               </div>
             )}
-            <div className="w-11/12  ">
-              <button onClick={handleUserDescriptionClick} >{user && user.userDescription}</button>
+            {/* className={`pl-2 mt-2 text-left ${
+                    interest.description === null ||interest.description === '' ? "text-slate-400" : ""
+                  } `} */}
+            <div
+              className={`w-11/12  `}
+            >
+              <p onClick={handleUserDescriptionClick}> {
+                user && (
+                  !user.userDescription || user.userDescription===''
+                  ? <span className="text-slate-400">Beschreibung einfügen...</span>
+                  : <span className="text-mmGrey">{user.userDescription}</span>
+                )
+              }
+              
+              </p>
             </div>
           </div>
         </div>
@@ -284,7 +297,9 @@ const ProfilePage = () => {
                   charType="interest"
                   onClick={handleDescClick}
                   className={`pl-2 mt-2 text-left ${
-                    interest.description === "" ? "text-slate-400" : ""
+                    interest.description === null || interest.description === ""
+                      ? "text-slate-400"
+                      : ""
                   } `}
                 >
                   {interest.description === ""
@@ -338,14 +353,18 @@ const ProfilePage = () => {
         <Modal.Body>
           <div className="space-y-6">
             <TextInput
-              defaultValue={user&&user.userDescription}
+              defaultValue={user && user.userDescription}
               placeholder="Schreibe einen kurzen Text über dich"
             />
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleSafeUserDesc}>Änderung speichern</Button>
-          <Button value={user&&user.userDescription} color="gray" onClick={handleCloseModal}>
+          <Button
+            value={user && user.userDescription}
+            color="gray"
+            onClick={handleCloseModal}
+          >
             Abbrechen
           </Button>
         </Modal.Footer>

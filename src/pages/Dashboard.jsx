@@ -19,7 +19,7 @@ const Dashboard = () => {
           >
             <img
               className="w-full h-80"
-              src="/public/assets/images/dashboard_chat.png"
+              src="/assets/images/dashboard_chat.png"
               alt="Sunset in the mountains"
             ></img>
             {/* '/public/assets/images/hero.png' */}
@@ -38,7 +38,7 @@ const Dashboard = () => {
           >
             <img
               className="w-full h-80"
-              src="/public/assets/images/dashboard_map.png"
+              src="/assets/images/dashboard_map.png"
               alt="Sunset in the mountains"
             ></img>
             <div className="px-6 py-4">
@@ -57,7 +57,7 @@ const Dashboard = () => {
           >
             <img
               className="w-full h-80"
-              src="/public/assets/images/dashboard_matching.png"
+              src="/assets/images/dashboard_matching.png"
               alt="Music match logo"
             ></img>
             <div className="px-6 py-4">
@@ -76,7 +76,7 @@ const Dashboard = () => {
           >
             <img
               className="w-full h-80"
-              src="/public/assets/images/dashboard_profile.png"
+              src="/assets/images/dashboard_profile.png"
               alt="Music match logo"
             ></img>
             <div className="px-6 py-4">
@@ -95,7 +95,7 @@ const Dashboard = () => {
           >
             <img
               className="w-full h-80"
-              src="/public/assets/images/dashboard_interests.png"
+              src="/assets/images/dashboard_interests.png"
               alt="Music match logo"
             ></img>
             <div className="px-6 py-4">

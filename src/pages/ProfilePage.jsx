@@ -279,12 +279,13 @@ const ProfilePage = () => {
       </div>
 
       {/* ROW with interests */}
-      <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded ">
-        <h2 className="font-bold text-mmGrey">Interessen</h2>
+      <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded w-full">
+        <Link to="/auth/skills" className="hover:text-mmOrange font-bold text-mmGrey">Interessen</Link>
         {/* ROW  for single interests*/}
+        <div className="flex flex-wrap gap-2 w-full ">
         {user &&
           user.interests.map((interest, index) => (
-            <div key={index} className="bg-slate-100 rounded">
+            <div key={index} className="bg-slate-100  drop-shadow rounded w-[46vw] ">
               <div className="flex flex-wrap p-2 ">
                 <Link
                   to="/auth/skills"
@@ -294,9 +295,9 @@ const ProfilePage = () => {
                   {interest.name}
                 </Link>
                 <button
-                  charType="interest"
+                  chartype="interest"
                   onClick={handleDescClick}
-                  className={`pl-2 mt-2 text-left ${
+                  className={`pl-2 pt-1 text-left ${
                     interest.description === null || interest.description === ""
                       ? "text-slate-400"
                       : ""
@@ -309,17 +310,53 @@ const ProfilePage = () => {
               </div>
             </div>
           ))}
+          </div>
       </div>
 
-      {/* ROW with skills */}
-      <div className="flex flex-col gap-2 bg-slate-200 p-4 mb-8 rounded">
+          {/* ROW with skills */}
+          <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded w-full">
+        <Link to="/auth/skills" className=" hover:text-mmOrange font-bold text-mmGrey">Skills</Link>
+        {/* ROW  for single skill*/}
+        <div className="flex flex-wrap w-full gap-3 ">
+        {user &&
+          user.skills.map((skill, index) => (
+            <div key={index} className="bg-slate-100 rounded drop-shadow  w-[46vw] ">
+              <div className="flex flex-wrap p-2 ">
+                <Link
+                  to="/auth/skills"
+                  onClick={() => {}}
+                  className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
+                >
+                  {skill.name}
+                </Link>
+                <button
+                  chartype="skill"
+                  onClick={handleDescClick}
+                  className={`pl-2 pt-1 text-left ${
+                    skill.description === null || skill.description === ""
+                      ? "text-slate-400"
+                      : ""
+                  } `}
+                >
+                  {skill.description === ""
+                    ? "Beschreibung einfügen..."
+                    : skill.description}
+                </button>
+              </div>
+            </div>
+          ))}
+          </div>
+      </div>
+
+    
+      {/* <div className="flex flex-col gap-2 bg-slate-200 p-4 mb-8 rounded">
         <Link
           to="/auth/skills/"
           className="font-bold hover:text-orange-400  text-mmGrey"
         >
           Fähigkeiten
         </Link>
-        {/* ROW  for single interests*/}
+    
         {user &&
           user.skills.map((skill, index) => (
             <div key={index} className="bg-slate-100 rounded">
@@ -345,7 +382,7 @@ const ProfilePage = () => {
               </div>
             </div>
           ))}
-      </div>
+      </div> */}
 
       {/* Description Modal */}
       <Modal onClose={handleCloseModal} show={openDescModal ? true : false}>

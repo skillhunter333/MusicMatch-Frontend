@@ -7,13 +7,12 @@ import { Modal, Button, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 
-//Keine Self-Ratings in Datenbank? + evtl. Minitext zu Skills/Interests
-
 const ProfilePage = () => {
   const { id } = useParams();
   //user is based on params id
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(0);
+  const [openDescModal, setOpenDescModal] = useState(false);
   // const [isOpen, setIsOpen] = useState(false);
   const [charDesc, setCharDesc] = useState("");
   const [charType, setCharType] = useState("");
@@ -36,6 +35,35 @@ const ProfilePage = () => {
       setUser(user);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function handleSafeUserDesc(e){
+    try {
+      const newUserDesc = e.target.parentElement.parentElement.parentElement.children[1].firstChild.firstChild.firstChild.firstChild.value
+      console.log(`handleSafeUserDesc: (${newUserDesc})`)
+    
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_API_URL}/users/me/`,
+        { userDescription: newUserDesc },
+        { withCredentials: true }
+      );
+      console.log(data)
+      updateUser();
+    } catch (error) {
+      if (error.response.status !== 400) toastError(error.message);
+      console.log(error);
+    }
+
+  };
+
+  function handleUserDescriptionClick(e){
+    try {
+      console.log(`handleUserDescriptionClick: (${e.target.textContent})`)
+      setOpenDescModal(true)
+    
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -179,8 +207,8 @@ const ProfilePage = () => {
 
   function handleCloseModal() {
     try {
-      console.log("handleCloseModel fired");
       setOpenModal(0);
+      setOpenDescModal(false)
     } catch (error) {
       console.log(error);
     }
@@ -227,7 +255,7 @@ const ProfilePage = () => {
               </div>
             )}
             <div className="w-11/12  ">
-              <p>{user && user.userDescription}</p>
+              <button onClick={handleUserDescriptionClick} >{user && user.userDescription}</button>
             </div>
           </div>
         </div>
@@ -303,6 +331,25 @@ const ProfilePage = () => {
             </div>
           ))}
       </div>
+
+      {/* Description Modal */}
+      <Modal onClose={handleCloseModal} show={openDescModal ? true : false}>
+        <Modal.Header>Beschreibung anpassen</Modal.Header>
+        <Modal.Body>
+          <div className="space-y-6">
+            <TextInput
+              defaultValue={user&&user.userDescription}
+              placeholder="Schreibe einen kurzen Text über dich"
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleSafeUserDesc}>Änderung speichern</Button>
+          <Button value={user&&user.userDescription} color="gray" onClick={handleCloseModal}>
+            Abbrechen
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <Modal onClose={handleCloseModal} show={openModal ? true : false}>
         <Modal.Header>Beschreibung anpassen</Modal.Header>

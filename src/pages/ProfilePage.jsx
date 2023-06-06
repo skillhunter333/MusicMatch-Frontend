@@ -195,8 +195,9 @@ const ProfilePage = () => {
 
   return (
     //main container
-    <div className="bg-slate-50">
-      <div className="flex  gap-4 flex-col pt-20 ml-8 mr-8">
+    <main className="flex flex-col gap-4 bg-slate-50 p-5 pt-16">
+
+      <div className="flex gap-4 flex-col ">
         {/*ROW(1) row with img, name and description*/}
         <div className="flex  h-48   ">
           {/*COL column with image*/}
@@ -232,47 +233,11 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      {/* ROW with interests */}
-      <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded ">
-        <Link
-          to="/auth/skills/"
-          className="font-bold  hover:text-orange-400  text-mmGrey"
-        >
-          Interessen
-        </Link>
-        {/* ROW  for single interests*/}
-        {user &&
-          user.interests.map((interest, index) => (
-            <div key={index} className="bg-slate-100 rounded">
-              <div className="flex flex-wrap p-2 ">
-                <Link
-                  to="/auth/skills"
-                  onClick={() => {}}
-                  className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
-                >
-                  {interest.name}
-                </Link>
-                <button
-                  charType="interest"
-                  onClick={handleDescClick}
-                  className={`pl-2 mt-2 text-left ${
-                    interest.description === "" ? "text-slate-400" : ""
-                  } `}
-                >
-                  {interest.description === ""
-                    ? "Beschreibung einfügen..."
-                    : interest.description}
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
       <div>
         <CloudinaryUploadWidget onUploadSuccess={handleUploadSuccess} />
       </div>
 
       {/* ROW with interests */}
-
       <div className="flex flex-col gap-2 bg-slate-200 p-4 rounded ">
         <h2 className="font-bold text-mmGrey">Interessen</h2>
         {/* ROW  for single interests*/}
@@ -390,7 +355,7 @@ const ProfilePage = () => {
             </Button>
           </Modal.Footer>
         </Modal> */}
-    </div>
+    </main>
   );
 };
 

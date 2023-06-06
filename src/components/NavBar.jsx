@@ -49,7 +49,7 @@ const MenuList = ({ dropdown = false }) => {
       ) : (
         <>
           <li className="text-zinc-100 mx-4 my-2">
-            <FontAwesomeIcon icon={faBell} className="text-2xl m-1" />
+            <FontAwesomeIcon icon={faBell} className=" m-1" />
           </li>
           <li className="text-zinc-100 mx-4 my-2">
             <Link to="/">Home</Link>

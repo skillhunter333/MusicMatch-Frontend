@@ -14,7 +14,7 @@ const Home = () => {
       <div className="bg-mmOrange h-screen">
         {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
 
-        <section className="bg-contain bg-right bg-no-repeat bg-[url('/public/assets/images/hero.png')] h-screen ">
+        <section className="bg-contain bg-right bg-no-repeat bg-[url('/assets/images/hero.png')] h-screen ">
           <div className="w-6/12 ">
             <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
               <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">

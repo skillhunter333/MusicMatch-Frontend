@@ -8,7 +8,7 @@ import { Card, Dropdown } from "flowbite-react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { toastError, toastSuccess } from "../lib/toastify";
 import { ChatState } from "../context/ChatProvider";
-import { Divider, Placeholder } from 'rsuite';
+import { Divider, Placeholder } from "rsuite";
 
 const Matching = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Matching = () => {
   const [matchedUser, setMatchedUser] = useState(null);
   const [matchesIndex, setMatchesIndex] = useState(0);
   const [dropDown, setDropDown] = useState(false);
-  const [bounce, setBounce] = useState(false)
+  const [bounce, setBounce] = useState(false);
 
   const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
   const [loading, setLoading] = useState(false);
@@ -33,24 +33,18 @@ const Matching = () => {
       console.log(data);
       setMatches(data);
       const user = await getUserById(data[matchesIndex].user._id);
-      setBounce(true)
-      
-      const timeOut = setTimeout(stopBounce,3500)
+      setBounce(true);
 
-      function stopBounce(){    
-          setBounce(false)
-          setMatchedUser(user)
+      const timeOut = setTimeout(stopBounce, 3500);
+
+      function stopBounce() {
+        setBounce(false);
+        setMatchedUser(user);
       }
-      
     } catch (error) {
       console.log(error);
     }
   }
-
-
-    
-    
-  
 
   async function handleNextBtn() {
     if (matchesIndex < matches.length - 1) {
@@ -108,8 +102,14 @@ const Matching = () => {
   }
 
   return (
-    <div className={`${matchedUser ? "bg-slate-800" : "bg-mmOrange"} h-full`}>
-      <div className="flex flex-col items-center  h-full justify-center">
+    <div
+      className={`${
+        matchedUser
+          ? "bg-slate-800"
+          : "bg-mmOrange pr-96 bg-contain bg-[bottom_right_-12rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
+      } h-full`}
+    >
+      <div className="flex flex-col items-center h-full justify-center">
         <div>
           {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
           <div className="text-3xl font-semibold mb-8"></div>
@@ -118,7 +118,6 @@ const Matching = () => {
             ""
           ) : (
             <div className="flex items-center gap-4 mb-6">
-            
               <span className="text-3xl font-semibold">
                 Finde dein MusicMatch!
               </span>
@@ -126,7 +125,11 @@ const Matching = () => {
           )}
         </div>
 
-        <div className={`${ bounce ? 'animate-bounce' : '' } shadow-2xl flex flex-col items-center w-96  border-solid border-2 rounded-lg bg-mmOrange`}>
+        <div
+          className={`${
+            bounce ? "animate-bounce" : ""
+          } shadow-2xl flex flex-col items-center w-96  border-solid border-2 rounded-lg bg-mmOrange`}
+        >
           <div className={`flex w-full ${matchedUser ? "" : "hidden"}`}>
             <div className="flex flex-col items-center w-full text-white text-1xl mx-5 ">
               <div className="flex items-center justify-around  ">
@@ -171,12 +174,14 @@ const Matching = () => {
                 ""
               )}
               <div className="mt-2 border-y border-white w-full">
-              <p className=" py-4 h-52 ">
-                {matchedUser
-                ?matchedUser.userDescription!== null && matchedUser.userDescription.length>300 ? matchedUser.userDescription.slice(0,300)+' ...':''
-                :''
-              }
-              </p>
+                <p className=" py-4 h-52 ">
+                  {matchedUser
+                    ? matchedUser.userDescription !== null &&
+                      matchedUser.userDescription.length > 300
+                      ? matchedUser.userDescription.slice(0, 300) + " ..."
+                      : ""
+                    : ""}
+                </p>
               </div>
             </div>
           </div>
@@ -218,6 +223,6 @@ const Matching = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Matching;

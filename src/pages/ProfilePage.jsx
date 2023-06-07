@@ -224,14 +224,14 @@ const ProfilePage = () => {
 
   return (
     //main container
-    <main className="flex flex-col gap-4 h-full  bg-slate-800 p-10 pt-16">
+    <main className="flex flex-col gap-4 h-full  bg-slate-800 p-20 pt-16">
       <div className="flex gap-4 flex-col ">
         {/*ROW(1) row with img, name and description*/}
-        <div className="flex  h-48 ">
+        <div className="flex gap-8 h-48 ">
           {/*COL column with image*/}
 
           <img
-            className="w-48 rounded-full"
+            className="w-48 rounded-full ring ring-slate-200 drop-shadow-2xl "
             // className="rounded-full"
             src={user && user.imgUrl}
             alt="Profile Picture"
@@ -289,12 +289,12 @@ const ProfilePage = () => {
           Interessen
         </Link>
         {/* ROW  for single interests*/}
-        <div className="flex flex-wrap gap-2 w-full ">
+        <div className="flex gap-3 flex-wrap w-full ">
           {user &&
             user.interests.map((interest, index) => (
               <div
                 key={index}
-                className="bg-slate-100  drop-shadow rounded w-[46vw] "
+                className="bg-slate-100  drop-shadow rounded w-[44vw]"
               >
                 <div className="flex flex-wrap p-2 ">
                   <Link
@@ -338,7 +338,7 @@ const ProfilePage = () => {
             user.skills.map((skill, index) => (
               <div
                 key={index}
-                className="bg-slate-100 rounded drop-shadow  w-[46vw] "
+                className="bg-slate-100 rounded drop-shadow  w-[44vw] "
               >
                 <div className="flex flex-wrap p-2 ">
                   <Link

@@ -8,7 +8,7 @@ import { Card, Dropdown } from "flowbite-react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { toastError, toastSuccess } from "../lib/toastify";
 import { ChatState } from "../context/ChatProvider";
-import { Divider, Placeholder } from "rsuite";
+import ConfettiExplosion from 'react-confetti-explosion';
 
 const Matching = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Matching = () => {
   const [matchesIndex, setMatchesIndex] = useState(0);
   const [dropDown, setDropDown] = useState(false);
   const [bounce, setBounce] = useState(false);
+
 
   const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
   const [loading, setLoading] = useState(false);
@@ -42,6 +43,7 @@ const Matching = () => {
         setBounce(false);
         setMatchedUser(user);
       }
+  
     } catch (error) {
       console.log(error);
     }
@@ -110,6 +112,7 @@ const Matching = () => {
           : "bg-mmOrange  bg-contain bg-[bottom_right_-6rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
       } h-full pl-80`}
     >
+      <div className="mx-auto">{matchedUser && <ConfettiExplosion />}</div>;
       <div className="flex flex-col items-left h-full justify-center">
         <div>
           {/* <img src="src\images\logo.png" alt="asdfasdf"></img>  */}
@@ -173,13 +176,12 @@ const Matching = () => {
                 ""
               )}
               <div className="mt-2 border-y border-slate-300 w-full">
-                <p className=" py-4 h-52 ">
-                  {matchedUser
-                    ? matchedUser.userDescription !== null &&
-                      matchedUser.userDescription.length > 300
-                      ? matchedUser.userDescription.slice(0, 300) + " ..."
-                      : ""
-                    : ""}
+                <p className=" py-4 h-52 ">{matchedUser && (
+                  matchedUser.userDescription === null || matchedUser.userDescription === ''
+                  ? 'Keine Nutzerbeschreibung ...'
+                  : matchedUser.userDescription.length > 300 ? matchedUser.userDescription.slice(0, 300) + " ..." : matchedUser.userDescription
+                )}
+
                 </p>
               </div>
             </div>
@@ -219,16 +221,20 @@ const Matching = () => {
             >
               get match
             </button>
+           
             <select class={`${matchedUser?'rounded-br-lg': 'rounded-r'} text-slate-50 bg-black  border-y-black border-r-black text-sm  focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}>
               <option selected>{user && user.settings.radius/1000}{' km'}</option>
-              <option value="US">2 km</option>
-              <option value="CA">5 km</option>
-              <option value="FR">10 km</option>
-              <option value="DE">15 km</option>
-              <option value="DE">20 km</option>
+              <option >2 km</option>
+              <option >5 km</option>
+              <option >10 km</option>
+              <option >15 km</option>
+              <option >20 km</option>
             </select>
+      
+
           </div>
         </div>
+     
       </div>
     </div>
   );

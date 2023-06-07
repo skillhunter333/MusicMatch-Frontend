@@ -12,6 +12,7 @@ import { Divider, Placeholder } from "rsuite";
 
 const Matching = () => {
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const [matches, setMatches] = useState(null);
   const [matchedUser, setMatchedUser] = useState(null);
@@ -105,8 +106,8 @@ const Matching = () => {
     <div
       className={`${
         matchedUser
-          ? "bg-mmOrange  bg-contain bg-[bottom_right_-12rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
-          : "bg-mmOrange  bg-contain bg-[bottom_right_-12rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
+          ? "bg-mmOrange  bg-contain bg-[bottom_right_-6rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
+          : "bg-mmOrange  bg-contain bg-[bottom_right_-6rem] bg-no-repeat bg-[url('/assets/images/hero.png')]"
       } h-full pl-80`}
     >
       <div className="flex flex-col items-left h-full justify-center">
@@ -209,14 +210,24 @@ const Matching = () => {
             </button>
           </div>
 
-          <button
-            onClick={handleGetMatchBtn}
-            className={`w-full h-12 text-white text-1xl bg-black ${
-              matchedUser ? "rounded-b-lg" : "rounded-lg"
-            }`}
-          >
-            get match
-          </button>
+          <div className="flex w-full">
+            <button
+              onClick={handleGetMatchBtn}
+              className={`w-full h-12 text-white text-1xl bg-black ${
+                matchedUser ? "rounded-bl-lg" : "rounded-l-lg"
+              }`}
+            >
+              get match
+            </button>
+            <select class={`${matchedUser?'rounded-br-lg': 'rounded-r'} text-slate-50 bg-black  border-y-black border-r-black text-sm  focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}>
+              <option selected>{user && user.settings.radius/1000}{' km'}</option>
+              <option value="US">2 km</option>
+              <option value="CA">5 km</option>
+              <option value="FR">10 km</option>
+              <option value="DE">15 km</option>
+              <option value="DE">20 km</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>

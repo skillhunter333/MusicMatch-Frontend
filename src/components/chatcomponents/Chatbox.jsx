@@ -129,17 +129,31 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
     <div className="bg-slate-800 w-3/4 h-full rounded-r-lg">
       {selectedChat ? (
         // <div className="w-full h-screen mt-6 pr-6">
-        <div className="w-full h-full overflow-hidden pb-6 pt-16 px-4">
+        <div className="w-full pt-16 h-full overflow-hidden pb-6  px-4">
           {/* <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-end items-center border-black text-mmGrey"> */}
-          <div className="text-4xl md:text-5xl -mt-4 pb-6 px-2 w-full flex justify-end items-center h-0 border-black text-mmGrey">
+          <div className="text-4xl  md:text-5xl -mt-4 pb-6 px-2 w-full flex justify-end items-center h-0 border-black text-mmGrey">
             {messages && selectedChat.isGroupChat && (
-              <UpdateGroupChatModal
-                fetchMessages={fetchMessages}
-                fetchAgain={fetchAgain}
-                setFetchAgain={setFetchAgain}
-              />
+              <>
+                <UpdateGroupChatModal
+                  fetchMessages={fetchMessages}
+                  fetchAgain={fetchAgain}
+                  setFetchAgain={setFetchAgain}
+                />
+              </>
             )}
           </div>
+          {/* <span className="flex">
+            {selectedChat.users.map((user) => (
+              <div key={user._id}>
+                <img
+                  src={user.imgUrl}
+                  alt=""
+                  className="h-16 w-16 m-4 rounded-full"
+                />
+              </div>
+            ))}
+          </span> */}
+
           {/* <div className="w-full h-full overflow-hidden pb-6 pt-16 px-4">
           <div className="text-4xl md:text-5xl pb-3 px-2 w-full flex justify-between items-center border-black text-mmGrey">
             {messages &&

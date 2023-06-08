@@ -156,7 +156,7 @@ const Skills = () => {
     try {
       console.log("updateChars fired");
       const { data } = await axios.get(
-        "http://localhost:4000/characteristics",
+        `${import.meta.env.VITE_API_URL}/characteristics`,
         {
           withCredentials: true,
         }

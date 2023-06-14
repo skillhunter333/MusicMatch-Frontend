@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(0);
   const [openDescModal, setOpenDescModal] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
+  // characteristic states
   const [charDesc, setCharDesc] = useState("");
   const [charType, setCharType] = useState("");
   const [charName, setCharName] = useState("");
@@ -22,12 +22,6 @@ const ProfilePage = () => {
     updateUser();
   }, []);
 
-  function handleInterestClick() {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   async function updateUser() {
     try {
@@ -214,13 +208,6 @@ const ProfilePage = () => {
       console.log(error);
     }
   }
-  // function handleCloseModalProfilePic() {
-  //   try {
-  //     setIsOpen(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     //main container
@@ -232,13 +219,11 @@ const ProfilePage = () => {
 
           <img
             className="w-48 rounded-full ring ring-slate-200 drop-shadow-2xl "
-            // className="rounded-full"
+  
             src={user && user.imgUrl}
             alt="Profile Picture"
             id="upload_widget"
-            // onClick={() => {
-            //   setIsOpen(true);
-            // }}
+    
           />
 
           {/*COL column with name and description*/}
@@ -254,9 +239,7 @@ const ProfilePage = () => {
                 </h2>
               </div>
             )}
-            {/* className={`pl-2 mt-2 text-left ${
-                    interest.description === null ||interest.description === '' ? "text-slate-400" : ""
-                  } `} */}
+     
             <div className={`w-11/12  `}>
               <p onClick={handleUserDescriptionClick}>
                 {" "}
@@ -367,41 +350,6 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      {/* <div className="flex flex-col gap-2 bg-slate-200 p-4 mb-8 rounded">
-        <Link
-          to="/auth/skills/"
-          className="font-bold hover:text-orange-400  text-mmGrey"
-        >
-          Fähigkeiten
-        </Link>
-    
-        {user &&
-          user.skills.map((skill, index) => (
-            <div key={index} className="bg-slate-100 rounded">
-              <div className="flex flex-wrap p-2 ">
-                <Link
-                  to="/auth/skills"
-                  onClick={handleInterestClick}
-                  className="bg-yellow-100 text-yellow-800 text-l font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 hover:bg-green-200 hover:text-green-900"
-                >
-                  {skill.name}
-                </Link>
-                <button
-                  charType="skill"
-                  onClick={handleDescClick}
-                  className={`pl-2 mt-2 text-left ${
-                    skill.description === "" ? "text-slate-400" : ""
-                  } `}
-                >
-                  {skill.description === ""
-                    ? "Beschreibung einfügen..."
-                    : skill.description}
-                </button>
-              </div>
-            </div>
-          ))}
-      </div> */}
-
       {/* Description Modal */}
       <Modal onClose={handleCloseModal} show={openDescModal ? true : false}>
         <Modal.Header>Beschreibung anpassen</Modal.Header>
@@ -460,22 +408,6 @@ const ProfilePage = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      {/* Profile Picture edit modal: */}
-      {/* <Modal
-          onClose={handleCloseModalProfilePic}
-          show={isOpen ? true : false}
-        >
-          <Modal.Header>Profilbild bearbeiten</Modal.Header>
-          <Modal.Body>
-            <div className="space-y-6"></div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button color="gray" onClick={handleCloseModalProfilePic}>
-              <p>Abbrechen</p>
-            </Button>
-          </Modal.Footer>
-        </Modal> */}
     </main>
   );
 };

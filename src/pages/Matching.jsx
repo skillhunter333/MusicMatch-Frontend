@@ -1,10 +1,8 @@
 import { useAuthContext } from "../context/AuthContext";
-import { useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 import getUserById from "../utils.js/getUserById";
 import { useNavigate } from "react-router-dom";
-import { Card, Dropdown } from "flowbite-react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { toastError, toastSuccess } from "../lib/toastify";
 import { ChatState } from "../context/ChatProvider";
@@ -17,11 +15,12 @@ const Matching = () => {
   const [matches, setMatches] = useState(null);
   const [matchedUser, setMatchedUser] = useState(null);
   const [matchesIndex, setMatchesIndex] = useState(0);
-  const [dropDown, setDropDown] = useState(false);
   const [bounce, setBounce] = useState(false);
 
 
   const { chats, setChats, selectedChat, setSelectedChat } = ChatState();
+
+  //COMMENT VITALI: was bedeutetd loading hier? vll ist eine aussagekräftigere beschreibung möglich?
   const [loading, setLoading] = useState(false);
 
   async function handleGetMatchBtn() {

@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { HiChatAlt2, HiMap, HiOutlineStar, HiSparkles } from "react-icons/hi";
-import { HiUserCircle } from "react-icons/hi2";
 import { useAuthContext } from "../context/AuthContext";
-import { SlRocket } from "react-icons/sl";
+
 
 const Dashboard = () => {
   const navigate = useNavigate();

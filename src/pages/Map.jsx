@@ -2,9 +2,9 @@ import { useAuthContext } from "../context/AuthContext";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import * as React from "react";
-import ReactMapGL, { Source, Layer, Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import meMarker from "../images/redMarker.png";
 import othersMarker from "../images/greyMarker.png";
 
@@ -14,8 +14,6 @@ const Map = () => {
   const [viewPort, setViewPort] = useState({
     latitude: user.latitude,
     longitude: user.longitude,
-    // width: '50vw',
-    // height: '55vh',
     zoom: 12,
   });
 
@@ -151,6 +149,3 @@ const Map = () => {
 
 export default Map;
 
-/*
-closeOnClick = {false}
-*/

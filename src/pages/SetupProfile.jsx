@@ -1,11 +1,11 @@
 import { Button } from "flowbite-react";
 import { useAuthContext } from "../context/AuthContext";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Divider, Placeholder } from 'rsuite';
+
 
 const SetupProfile = () => {
-  const { user, setUser } = useAuthContext();
+  const { user } = useAuthContext();
 
   const [{ firstName, lastName, address, postalCode, radius }, setForm] =
     useState({
@@ -65,15 +65,7 @@ const SetupProfile = () => {
 
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">
-            {/* <input
-              type='text'
-              placeholder='E-mail'
-              name='email'
-              value={email}
-              onChange={handleChange}
-              className={inputStyles}
-            /> */}
-
+       
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="text"

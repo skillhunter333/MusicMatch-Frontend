@@ -1,7 +1,6 @@
 import { useAuthContext } from "../context/AuthContext";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-
 import { Button } from "flowbite-react";
 
 const Skills = () => {

@@ -7,6 +7,7 @@ import * as React from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import meMarker from "../images/redMarker.png";
 import othersMarker from "../images/greyMarker.png";
+import { toastError } from '../lib/toastify';
 
 const Map = () => {
   const { user } = useAuthContext();

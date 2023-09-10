@@ -34,11 +34,11 @@ const Register = () => {
       );
       if (status === 201) setGotCookie(true);
     } catch (error) {
-      toastError(error.message || "No cookie back");
+      toastError(error.message + " No cookie back");
     }
   };
 
-  if (isAuth) return <Navigate to="/auth/dashboard" />;
+  if (isAuth) return <Navigate to="/verify" />;
   else
     return (
       <main className="bg-slate-800 mt-[-1px] w-full h-screen flex items-center justify-center">
@@ -99,7 +99,7 @@ const Register = () => {
             >
               Log in
             </button>
-            <button className="w-1/2 text-black bg-mmOrange hover:bg-green-400 dark:bg-gray-900 dark:hover:bg-sky-500 p-1">
+            <button type='submit' className="w-1/2 text-black bg-mmOrange hover:bg-green-400 dark:bg-gray-900 dark:hover:bg-sky-500 p-1">
               Register
             </button>
           </div>

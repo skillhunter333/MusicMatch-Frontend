@@ -9,8 +9,9 @@ import SetupProfile from './SetupProfile';
 import ProfilePage from './ProfilePage';
 import Chat from './Chat';
 import Map from './Map';
-import Matching from './Matching'
-import Skills from './Skills'
+import Matching from './Matching';
+import Skills from './Skills';
+import VerificationPage from './VerificationPage';
 
 export {
   Home,
@@ -25,5 +26,6 @@ export {
   Chat,
   Map,
   Matching,
-  Skills
+  Skills,
+  VerificationPage
 };
